@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kasra Nourani — Senior Product Designer</title>
+<link rel="stylesheet" href="ds/styles.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Fustat:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* Override all design-system font tokens to Google Sans Flex */
+:root{
+  --font-display:"Google Sans Flex","Google Sans Code",system-ui,-apple-system,sans-serif;
+  --font-ui:"Google Sans Flex","Google Sans Code",system-ui,-apple-system,sans-serif;
+  --font-label:"Google Sans Flex","Google Sans Code",system-ui,-apple-system,sans-serif;
+  --fw-light:300; --fw-regular:400; --fw-medium:500; --fw-semibold:500; --fw-bold:500;
+  --c-border:#EEEEEE; --c-light-gray:#EEEEEE; --c-stroke-1:#EEEEEE; --c-stroke-2:#EEEEEE;
+  --radius-xs:16px; --radius-sm:16px; --radius-md:16px; --radius-lg:16px; --radius-xl:16px;
+}
+</style>
+<style>
+/* ============================================================
+   COMPONENT CSS — copied verbatim from the design system
+   (Button, IconButton, Card, Badge, TextField)
+   ============================================================ */
+.psg-btn{
+  --_bg: var(--c-black); --_fg: var(--c-white); --_bg-hover: var(--c-black-active);
+  --_bg-active:#000; --_ring: transparent;
+  display:inline-flex; align-items:center; justify-content:center; gap: var(--space-2);
+  font-family: var(--font-ui); font-weight: var(--fw-medium);
+  border:0; border-radius: var(--radius-md);
+  background: var(--_bg); color: var(--_fg);
+  box-shadow: inset 0 0 0 1px var(--_ring);
+  cursor:pointer; white-space:nowrap; text-decoration:none;
+  transition: background var(--dur-fast) var(--ease-standard), box-shadow var(--dur-fast) var(--ease-standard),
+              color var(--dur-fast) var(--ease-standard), transform var(--dur-fast) var(--ease-standard);
+}
+.psg-btn:hover{ background: var(--_bg-hover); }
+.psg-btn:active{ background: var(--_bg-active); transform: translateY(0.5px); }
+.psg-btn:focus-visible{ outline:none; box-shadow: inset 0 0 0 1px var(--_ring), var(--ring-focus); }
+.psg-btn__ico{ display:inline-flex; flex:0 0 auto; }
+.psg-btn--lg{ height:48px; padding:0 var(--space-6); font-size:var(--fs-body-md); line-height:var(--lh-body-md); }
+.psg-btn--md{ height:40px; padding:0 var(--space-5); font-size:var(--fs-body-sm); line-height:var(--lh-body-sm); }
+.psg-btn--sm{ height:32px; padding:0 var(--space-4); font-size:var(--fs-caption-lg); line-height:var(--lh-caption-lg); }
+.psg-btn--lg .psg-btn__ico svg{ width:22px;height:22px; }
+.psg-btn--md .psg-btn__ico svg{ width:18px;height:18px; }
+.psg-btn--sm .psg-btn__ico svg{ width:16px;height:16px; }
+.psg-btn--primary{ --_bg:var(--c-black); --_fg:var(--c-white); --_bg-hover:var(--c-black-active); --_bg-active:#000; }
+.psg-btn--accent{ --_bg:var(--c-accent); --_fg:var(--c-white); --_bg-hover:var(--c-accent-hover); --_bg-active:var(--c-accent-active); }
+.psg-btn--secondary{ --_bg:var(--c-on-background); --_fg:var(--c-text); --_bg-hover:var(--c-light-gray); --_bg-active:var(--c-gray); }
+.psg-btn--outline{ --_bg:transparent; --_fg:var(--c-black); --_ring:var(--c-black); --_bg-hover:var(--c-on-background); --_bg-active:var(--c-light-gray); }
+.psg-btn--ghost{ --_bg:transparent; --_fg:var(--c-text); --_bg-hover:var(--c-on-background); --_bg-active:var(--c-light-gray); }
+.psg-btn--full{ width:100%; }
+
+.psg-iconbtn{
+  --_bg: var(--c-black); --_fg: var(--c-white); --_bg-hover: var(--c-black-active);
+  --_bg-active:#000; --_ring: transparent;
+  display:inline-flex; align-items:center; justify-content:center;
+  border:0; border-radius: var(--radius-md); background: var(--_bg); color: var(--_fg);
+  box-shadow: inset 0 0 0 1px var(--_ring); cursor:pointer; padding:0;
+  transition: background var(--dur-fast) var(--ease-standard), box-shadow var(--dur-fast) var(--ease-standard), transform var(--dur-fast) var(--ease-standard);
+}
+.psg-iconbtn:hover{ background: var(--_bg-hover); }
+.psg-iconbtn:active{ background: var(--_bg-active); transform: translateY(0.5px); }
+.psg-iconbtn:focus-visible{ outline:none; box-shadow: inset 0 0 0 1px var(--_ring), var(--ring-focus); }
+.psg-iconbtn svg{ display:block; }
+.psg-iconbtn--lg{ width:48px;height:48px; } .psg-iconbtn--md{ width:40px;height:40px; } .psg-iconbtn--sm{ width:32px;height:32px; }
+.psg-iconbtn--lg svg{ width:22px;height:22px; } .psg-iconbtn--md svg{ width:18px;height:18px; } .psg-iconbtn--sm svg{ width:16px;height:16px; }
+.psg-iconbtn--round{ border-radius: var(--radius-circle); }
+.psg-iconbtn--secondary{ --_bg:var(--c-on-background); --_fg:var(--c-text); --_bg-hover:var(--c-light-gray); --_bg-active:var(--c-gray); }
+.psg-iconbtn--outline{ --_bg:transparent; --_fg:var(--c-black); --_ring:var(--c-black); --_bg-hover:var(--c-on-background); --_bg-active:var(--c-light-gray); }
+.psg-iconbtn--ghost{ --_bg:transparent; --_fg:var(--c-text); --_bg-hover:var(--c-on-background); --_bg-active:var(--c-light-gray); }
+
+.psg-card{
+  --_pad: var(--space-7); display:block; position:relative; background: var(--c-white);
+  border-radius: var(--radius-lg); box-shadow: inset 0 0 0 1px var(--c-border); overflow:hidden;
+  transition: box-shadow var(--dur-base) var(--ease-standard), transform var(--dur-base) var(--ease-standard);
+}
+.psg-card--shadow{ box-shadow: var(--shadow-sm); }
+.psg-card--flat{ box-shadow:none; background: var(--c-on-background); }
+.psg-card__body{ padding: var(--_pad); }
+.psg-card--pad-lg{ --_pad: var(--space-10); }
+.psg-card--interactive{ cursor:pointer; }
+.psg-card--interactive:hover{ box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+.psg-badge{
+  --_bg: var(--c-on-background); --_fg: var(--c-text); --_ring: transparent;
+  display:inline-flex; align-items:center; gap: var(--space-1);
+  font-family: var(--font-ui); font-weight: var(--fw-medium);
+  font-size: var(--fs-caption-md); line-height:1; letter-spacing:0.01em;
+  height:22px; padding: 0 var(--space-3); border-radius: var(--radius-pill);
+  background: var(--_bg); color: var(--_fg); box-shadow: inset 0 0 0 1px var(--_ring); white-space:nowrap;
+}
+.psg-badge--square{ border-radius: var(--radius-xs); }
+.psg-badge--neutral{ --_bg:var(--c-on-background); --_fg:var(--c-text); }
+.psg-badge--accent{  --_bg:var(--c-accent-disabled); --_fg:var(--c-accent-active); }
+.psg-badge--outline{ --_bg:transparent; --_ring:var(--c-border); --_fg:var(--c-text); }
+
+.psg-field{ display:flex; flex-direction:column; gap: var(--space-1); font-family: var(--font-ui); width:100%; }
+.psg-field__label{ font-size: var(--fs-body-sm); line-height: var(--lh-body-sm); font-weight: var(--fw-medium); color: var(--c-text); }
+.psg-field__box{
+  display:flex; align-items:center; gap: var(--space-2); height:48px; padding: 0 var(--space-5);
+  border-radius: var(--radius-md); background: var(--c-white); box-shadow: inset 0 0 0 1px var(--c-border);
+  transition: box-shadow var(--dur-fast) var(--ease-standard);
+}
+.psg-field__box:hover{ box-shadow: inset 0 0 0 1px var(--c-darker-gray); }
+.psg-field__box:focus-within{ box-shadow: inset 0 0 0 1px var(--c-accent), var(--ring-focus); }
+.psg-field__ico{ display:inline-flex; flex:0 0 auto; color: var(--c-subtext); }
+.psg-field__ico svg{ width:18px; height:18px; display:block; }
+.psg-field__input,.psg-field__area{
+  flex:1 1 auto; min-width:0; border:0; outline:none; background:transparent;
+  font-family: var(--font-ui); font-weight: var(--fw-regular);
+  font-size: var(--fs-body-md); line-height: var(--lh-body-md); color: var(--c-text); padding:0;
+}
+.psg-field__input::placeholder,.psg-field__area::placeholder{ color: var(--c-gray); }
+.psg-field__help{ display:flex; align-items:center; gap: var(--space-3); padding: var(--space-2) 0; font-size: var(--fs-body-sm); line-height: var(--lh-body-sm); font-weight: var(--fw-light); color: var(--c-subtext); }
+.psg-field__help svg{ width:12px; height:12px; display:block; flex:0 0 auto; }
+.psg-field--error .psg-field__box{ box-shadow: inset 0 0 0 1px var(--c-error); }
+.psg-field--error .psg-field__box:focus-within{ box-shadow: inset 0 0 0 1px var(--c-error), 0 0 0 3px rgba(255,0,111,0.15); }
+.psg-field--error .psg-field__help,.psg-field--error .psg-field__ico{ color: var(--c-error); }
+
+/* ============================================================
+   APP LAYOUT
+   ============================================================ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--c-background);color:var(--text-primary);font-family:var(--font-display);-webkit-font-smoothing:antialiased;overflow-x:hidden;letter-spacing:.5px}
+::selection{background:var(--c-accent);color:#fff}
+a{color:inherit;text-decoration:none}
+b,strong{font-weight:500}
+.spec{font-family:var(--font-label);font-weight:var(--fw-semibold);font-size:var(--fs-caption-md);letter-spacing:.08em;text-transform:uppercase;color:var(--c-subtext)}
+
+#app{min-height:100vh;display:flex;flex-direction:column}
+main{flex:1}
+.wrap{max-width:1280px;margin:0 auto;width:100%}
+.pad{padding-left:80px;padding-right:80px}
+@media(max-width:900px){.pad{padding-left:24px;padding-right:24px}}
+
+/* ---- NAV ---- */
+.nav{
+  position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;
+  padding:18px 80px;background:rgba(250,250,250,0.85);backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--c-light-gray);
+}
+@media(max-width:900px){.nav{padding:16px 24px}}
+.brandbtn{display:flex;align-items:center;gap:12px;border:0;background:transparent;cursor:pointer;padding:0}
+.mono{width:30px;height:30px;border-radius:50%;box-shadow:inset 0 0 0 1.2px var(--c-black);display:grid;place-items:center;font-weight:500;font-size:11px;letter-spacing:.02em;color:var(--c-black)}
+.brandnm{font-weight:500;font-size:18px;color:var(--c-black)}
+.navlinks{position:relative;display:flex;align-items:center;gap:8px}
+.navlink{position:relative;border:0;background:transparent;cursor:pointer;font-family:var(--font-ui);font-weight:500;font-size:16px;color:var(--c-subtext);padding:8px 6px;transition:color var(--dur-base) var(--ease-standard)}
+.navlink:hover{color:var(--c-black)}
+.navlink.active{color:var(--c-black)}
+.navunderline{position:absolute;bottom:2px;height:2px;background:var(--c-accent);border-radius:2px;transition:transform var(--dur-slow) var(--ease-standard),width var(--dur-slow) var(--ease-standard);left:0;opacity:0}
+.navcta{margin-left:8px}
+@media(max-width:680px){.brandnm{display:none}.navlink{font-size:14px;padding:8px 4px}.navcta .psg-btn__label{display:none}}
+
+/* ---- views + transitions ---- */
+.view{display:none}
+.view.active{display:block}
+.view.anim .reveal{animation:rise .55s var(--ease-standard) both}
+.view.anim .reveal:nth-child(2){animation-delay:.05s}
+.view.anim .reveal:nth-child(3){animation-delay:.10s}
+.view.anim .reveal:nth-child(4){animation-delay:.14s}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.view.leaving{animation:fade .18s var(--ease-standard) both}
+@keyframes fade{to{opacity:0;transform:translateY(-6px)}}
+
+/* ---- HERO ---- */
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:26px;padding:84px 80px 16px}
+.hero .spec{margin-bottom:-8px}
+.hero h1{max-width:940px;font-weight:300;font-size:var(--fs-title);line-height:var(--lh-title);letter-spacing:-.01em;color:var(--c-black)}
+.hero h1 .pt{color:var(--c-accent)}
+.hero p{max-width:720px;font-weight:400;font-size:var(--fs-body-lg);line-height:28px;color:var(--c-text)}
+.hero p b{font-weight:500}
+.hero .ctarow{display:flex;align-items:center;gap:8px;margin-top:6px}
+.metrics-strip{display:flex;justify-content:center;gap:0;margin-top:30px;border-top:1px solid var(--c-light-gray);border-bottom:1px solid var(--c-light-gray)}
+.mstat{flex:1;max-width:240px;padding:26px 20px;text-align:center;border-right:1px solid var(--c-light-gray)}
+.mstat:last-child{border-right:0}
+.mstat .mv{font-weight:300;font-size:var(--fs-h1);line-height:1;color:var(--c-black);letter-spacing:-.01em}
+.mstat .ml{font-family:var(--font-label);font-size:12px;letter-spacing:.04em;color:var(--c-subtext);margin-top:8px}
+@media(max-width:680px){.hero h1{font-size:var(--fs-h1);line-height:var(--lh-h1)}.metrics-strip{flex-wrap:wrap}.mstat{flex:1 1 50%;max-width:none;border-bottom:1px solid var(--c-light-gray)}.mstat:nth-child(even){border-right:0}}
+
+/* ---- SECTION HEAD ---- */
+.sechead{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px;gap:16px}
+.sechead h2{font-weight:300;font-size:var(--fs-h2);color:var(--c-black);letter-spacing:-.01em}
+.sechead .spec{flex:0 0 auto}
+
+/* ---- WORK GRID ---- */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:980px){.grid3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid3{grid-template-columns:1fr}}
+.tile{position:relative;height:300px;border:0;padding:0;cursor:pointer;border-radius:var(--radius-md);overflow:hidden;text-align:left;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);background-size:cover;background-position:center;transition:transform var(--dur-base) var(--ease-standard),box-shadow var(--dur-base) var(--ease-standard)}
+.tile:hover{transform:translateY(-3px);box-shadow:var(--shadow-md),inset 0 0 0 1px rgba(0,0,0,.06)}
+.tile .ghost{position:absolute;right:18px;top:0px;font-weight:500;font-size:128px;line-height:1;color:rgba(255,255,255,.10)}
+.tile .scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),rgba(0,0,0,0) 58%);opacity:0;transition:opacity var(--dur-base) var(--ease-standard)}
+.tile:hover .scrim{opacity:1}
+.tile .tmeta{position:absolute;left:16px;right:16px;bottom:14px;display:flex;align-items:flex-end;justify-content:space-between;transition:transform var(--dur-base) var(--ease-standard),opacity var(--dur-base) var(--ease-standard)}
+.tile .tname{font-family:var(--font-ui);font-weight:500;font-size:20px;color:#fff}
+.tile .ttag{font-family:var(--font-label);font-size:12px;color:rgba(255,255,255,.85);margin-top:2px}
+.tile .tarr{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.16);color:#fff;opacity:0;transition:opacity var(--dur-base) var(--ease-standard)}
+.tile .tarr svg{width:18px;height:18px}
+.tile:hover .tarr{opacity:1}
+.tile .tmeta{opacity:0;transform:translateY(6px)}
+.tile:hover .tmeta{opacity:1;transform:none}
+
+/* ---- LIGHTBOX ---- */
+.lb{position:fixed;inset:0;z-index:50;background:rgba(14,14,16,.55);backdrop-filter:blur(4px);display:grid;place-items:center;padding:32px;opacity:0;pointer-events:none;transition:opacity var(--dur-base) var(--ease-standard)}
+.lb.open{opacity:1;pointer-events:auto}
+.lb .panel{width:min(720px,92vw);background:var(--c-white);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);transform:translateY(12px) scale(.98);transition:transform var(--dur-slow) var(--ease-standard)}
+.lb.open .panel{transform:none}
+.lb .cover{height:300px;background-size:cover;background-position:center}
+.lb .lbbody{padding:28px 32px 32px}
+.lb .lbtop{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.lb .lbtop h3{font-weight:500;font-size:var(--fs-h3);color:var(--c-black)}
+.lb .lbbadges{display:flex;gap:8px;margin:12px 0 16px;align-items:center}
+.lb .lbmetric{margin-left:auto;font-weight:300;font-size:var(--fs-h4);color:var(--c-accent)}
+.lb .lbblurb{font-size:var(--fs-body-lg);line-height:26px;color:var(--c-text);margin-bottom:24px}
+.lb .lbact{display:flex;gap:10px}
+
+/* ---- ABOUT ---- */
+.about2{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding-top:8px}
+@media(max-width:900px){.about2{grid-template-columns:1fr;gap:40px}}
+.about2 h2{font-weight:300;font-size:var(--fs-title);line-height:var(--lh-title);color:var(--c-text);letter-spacing:-.01em}
+.about2 .acol{display:flex;flex-direction:column;gap:24px}
+.about2 .acopy{display:flex;flex-direction:column;gap:18px}
+.about2 p{font-weight:400;font-size:var(--fs-body-lg);line-height:28px;color:var(--c-text)}
+.about2 p b{font-weight:500}
+.about2 .actas{display:flex;gap:10px;margin-top:4px;flex-wrap:wrap}
+.portrait{height:560px;border-radius:var(--radius-md);overflow:hidden;background:#000 url('assets/images/portrait.png') center top/cover;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+@media(max-width:900px){.portrait{height:420px}}
+
+.block{margin-top:80px;padding-top:40px;border-top:1px solid var(--c-light-gray)}
+.strengths{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:980px){.strengths{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.strengths{grid-template-columns:1fr}}
+.strength{padding:22px;background:var(--c-white);border-radius:var(--radius-md);box-shadow:inset 0 0 0 1px var(--c-border);transition:box-shadow var(--dur-base) var(--ease-standard),transform var(--dur-base) var(--ease-standard)}
+.strength:hover{box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+.strength .si{width:36px;height:36px;border-radius:var(--radius-sm);display:grid;place-items:center;background:var(--c-accent-disabled);color:var(--c-accent-active);margin-bottom:16px}
+.strength .si svg{width:20px;height:20px}
+.strength h4{font-weight:500;font-size:16px;color:var(--c-black);margin-bottom:6px}
+.strength p{font-size:var(--fs-body-sm);line-height:20px;color:var(--c-subtext)}
+
+.tl{display:grid;grid-template-columns:160px 1fr auto;gap:28px;padding:22px 4px;border-bottom:1px solid var(--c-light-gray);align-items:baseline;transition:padding var(--dur-base) var(--ease-standard),background var(--dur-base) var(--ease-standard)}
+.tl:hover{padding-left:16px;padding-right:16px;background:var(--c-on-background)}
+.tl .yr{font-family:var(--font-label);font-size:13px;color:var(--c-subtext);letter-spacing:.02em}
+.tl .role{font-weight:500;font-size:var(--fs-h5);color:var(--c-black)}
+.tl .co{font-size:var(--fs-body-sm);color:var(--c-subtext);margin-top:3px}
+.tl .place{font-family:var(--font-label);font-size:12px;color:var(--c-darker-gray);text-align:right}
+@media(max-width:680px){.tl{grid-template-columns:1fr;gap:6px}.tl .place{text-align:left}}
+.eduwrap{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+@media(max-width:680px){.eduwrap{grid-template-columns:1fr;gap:28px}}
+.edu h4{font-weight:500;font-size:var(--fs-h5);color:var(--c-black);margin-bottom:6px}
+.edu .x{font-size:var(--fs-body-md);color:var(--c-subtext)}
+.edu ul{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:10px}
+.edu li{font-size:var(--fs-body-md);color:var(--c-text);display:flex;gap:11px;align-items:center}
+.edu li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--c-accent);flex-shrink:0}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{font-family:var(--font-ui);font-weight:500;font-size:13px;padding:7px 14px;border-radius:var(--radius-pill);box-shadow:inset 0 0 0 1px var(--c-border);color:var(--c-text);transition:all var(--dur-fast) var(--ease-standard)}
+.chip:hover{background:var(--c-black);color:#fff;box-shadow:none}
+
+/* ---- CASE STUDIES ---- */
+.csintro{max-width:62ch;padding-top:4px}
+.csintro h2{font-weight:300;font-size:var(--fs-title);line-height:var(--lh-title);color:var(--c-black);letter-spacing:-.01em}
+.csintro h2 .pt{color:var(--c-accent)}
+.csintro p{margin-top:18px;font-size:var(--fs-body-lg);line-height:28px;color:var(--c-subtext)}
+.cases{margin-top:48px;display:flex;flex-direction:column;gap:20px}
+.case{background:var(--c-white);border-radius:var(--radius-lg);box-shadow:inset 0 0 0 1px var(--c-border);overflow:hidden;transition:box-shadow var(--dur-base) var(--ease-standard)}
+.case.open{box-shadow:var(--shadow-sm)}
+.casehead{display:grid;grid-template-columns:auto 1fr auto auto;gap:20px;align-items:center;padding:26px 28px;cursor:pointer}
+.casehead .cn{font-family:var(--font-label);font-size:13px;color:var(--c-accent)}
+.casehead .ct h3{font-weight:500;font-size:var(--fs-h3);color:var(--c-black);line-height:1.05}
+.casehead .ct .ctt{font-family:var(--font-label);font-size:12px;color:var(--c-subtext);margin-top:6px;letter-spacing:.04em;text-transform:uppercase}
+.casehead .cm{display:flex;flex-direction:column;align-items:flex-end;white-space:nowrap;text-align:right}
+.casehead .cmv{font-weight:300;font-size:var(--fs-h2);color:var(--c-accent);letter-spacing:-.01em;line-height:1}
+.casehead .cml{font-family:var(--font-label);font-size:11px;letter-spacing:.04em;color:var(--c-subtext);margin-top:6px;text-transform:uppercase}
+.casehead .ctog{width:40px;height:40px;border-radius:var(--radius-md);box-shadow:inset 0 0 0 1px var(--c-border);display:grid;place-items:center;position:relative;transition:all var(--dur-base) var(--ease-standard);color:var(--c-black);flex-shrink:0}
+.case.open .ctog{background:var(--c-accent);color:#fff;box-shadow:none}
+.ctog svg{width:18px;height:18px;transition:transform var(--dur-base) var(--ease-standard)}
+.case.open .ctog svg{transform:rotate(180deg)}
+.casebody{display:grid;grid-template-rows:0fr;transition:grid-template-rows var(--dur-slow) var(--ease-standard)}
+.case.open .casebody{grid-template-rows:1fr}
+.casebody>.inner{overflow:hidden;min-height:0}
+.casegrid{display:grid;grid-template-columns:1fr 300px;gap:48px;padding:0 28px 30px;align-items:start}
+@media(max-width:860px){.casegrid{grid-template-columns:1fr;gap:28px}.casehead .cm{display:none}}
+.csb{margin-bottom:24px}
+.csb:last-child{margin-bottom:0}
+.csb .spec{color:var(--c-accent);margin-bottom:8px;display:block}
+.csb p{font-size:var(--fs-body-md);line-height:24px;color:var(--c-text)}
+.casecover{height:200px;border-radius:var(--radius-md);background-size:cover;background-position:center;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);margin-bottom:16px}
+.casetags{display:flex;flex-wrap:wrap;gap:8px}
+
+/* ---- CONTACT ---- */
+.contact2{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start;max-width:1000px;margin:0 auto;padding-top:8px}
+@media(max-width:860px){.contact2{grid-template-columns:1fr;gap:40px}}
+.contact2 h2{font-weight:300;font-size:var(--fs-title);line-height:var(--lh-title);color:var(--c-black);letter-spacing:-.01em;margin-bottom:16px}
+.contact2 h2 .pt{color:var(--c-accent)}
+.contact2 .clead{font-size:var(--fs-body-lg);line-height:28px;color:var(--c-subtext);margin-bottom:28px}
+.crows{display:flex;flex-direction:column;gap:14px}
+.crow{display:flex;align-items:center;gap:12px;color:var(--c-text)}
+.crow .ci{color:var(--c-subtext);display:inline-flex}
+.crow .ci svg{width:18px;height:18px}
+.crow a,.crow span{font-family:var(--font-ui);font-size:16px}
+.crow a:hover{color:var(--c-accent)}
+.cform{display:flex;flex-direction:column;gap:18px}
+.csuccess{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:12px 0}
+.csuccess .ok{color:var(--c-success);display:inline-flex}
+.csuccess .ok svg{width:26px;height:26px}
+.csuccess h3{font-weight:500;font-size:var(--fs-h4);color:var(--c-black)}
+.csuccess p{color:var(--c-subtext);font-size:16px}
+
+/* ---- FOOTER ---- */
+.foot{display:flex;align-items:center;justify-content:space-between;padding:30px 80px;border-top:1px solid var(--c-light-gray);font-family:var(--font-label);font-size:13px;color:var(--c-subtext);gap:20px;flex-wrap:wrap}
+.foot .fcopy{order:2;margin-left:auto}
+.foot .flinks{order:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.foot .flink{border:0;background:transparent;cursor:pointer;font-family:var(--font-ui);font-size:13px;color:var(--c-subtext);padding:6px 10px;border-radius:var(--radius-pill);transition:color var(--dur-base) var(--ease-standard),background var(--dur-base) var(--ease-standard)}
+.foot .flink:hover{color:var(--c-black);background:var(--c-on-background)}
+@media(max-width:900px){.foot{padding:26px 24px}.foot .fcopy{margin-left:0;order:2;width:100%}}6px;flex-wrap:wrap}
+@media(max-width:900px){.foot{padding:26px 24px}.foot .fcopy{margin-left:0;order:2;width:100%}}
+.foot .fmotif{display:none}
+
+/* ---- HERO SLIDERS ---- */
+.hero-rail{margin-top:48px;display:flex;flex-direction:column;gap:18px;overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.rail{display:flex;width:max-content;animation:marquee 55s linear infinite}
+.rail--rev{animation-direction:reverse}
+.hero-rail:hover .rail{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.scard{position:relative;flex:0 0 auto;width:320px;height:200px;margin-right:18px;border-radius:var(--radius-md);overflow:hidden;background-size:cover;background-position:center;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);cursor:pointer;border:0;padding:0;transition:transform var(--dur-base) var(--ease-standard)}
+.scard:hover{transform:translateY(-4px)}
+.scard .sg{position:absolute;right:16px;top:-6px;font-weight:500;font-size:120px;line-height:1;color:rgba(255,255,255,.10)}
+.scard .sscrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),transparent 55%)}
+.scard .sl{position:absolute;left:16px;bottom:14px;display:flex;flex-direction:column;text-align:left}
+.scard .sn{font-family:var(--font-ui);font-weight:500;font-size:18px;color:#fff}
+.scard .st{font-family:var(--font-label);font-size:12px;color:rgba(255,255,255,.85);margin-top:3px}
+@media(max-width:680px){.scard{width:240px;height:150px}}
+
+/* ---- DESIGN ENHANCEMENTS ---- */
+.enh{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:980px){.enh{grid-template-columns:1fr}}
+.ecard{display:flex;flex-direction:column;gap:14px;background:var(--c-white);border-radius:var(--radius-lg);box-shadow:inset 0 0 0 1px var(--c-border);padding:26px;transition:box-shadow var(--dur-base) var(--ease-standard),transform var(--dur-base) var(--ease-standard)}
+.ecard:hover{box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+.ecard h4{font-weight:500;font-size:var(--fs-h5);color:var(--c-black);line-height:1.2}
+.ecard p{font-size:var(--fs-body-sm);line-height:20px;color:var(--c-subtext)}
+.ecard .psg-badge{align-self:flex-start}
+.bna{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:16px;border-top:1px solid var(--c-light-gray)}
+.bna .b{font-family:var(--font-label);font-size:13px;color:var(--c-darker-gray);text-decoration:line-through}
+.bna .arr{color:var(--c-subtext);display:inline-flex}
+.bna .arr svg{width:16px;height:16px}
+.bna .a{font-family:var(--font-ui);font-weight:500;font-size:15px;color:var(--c-accent);margin-left:auto}
+
+/* ---- WRITING ---- */
+.articles{border-top:1px solid var(--c-light-gray)}
+.arow{display:grid;grid-template-columns:auto 1fr auto auto;gap:20px;align-items:center;padding:22px 4px;border-bottom:1px solid var(--c-light-gray);transition:padding var(--dur-base) var(--ease-standard),background var(--dur-base) var(--ease-standard)}
+.arow:hover{padding-left:16px;padding-right:16px;background:var(--c-on-background)}
+.arow .at{font-weight:500;font-size:var(--fs-h5);color:var(--c-black)}
+.arow .ameta{font-family:var(--font-label);font-size:12px;color:var(--c-subtext)}
+.arow .aarr{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1px var(--c-border);color:var(--c-black);transition:all var(--dur-base) var(--ease-standard)}
+.arow:hover .aarr{background:var(--c-accent);color:#fff;box-shadow:none}
+.arow .aarr svg{width:18px;height:18px}
+@media(max-width:680px){.arow{grid-template-columns:auto 1fr auto;gap:12px}.arow .ameta{display:none}}
+
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001ms !important;transition-duration:.001ms !important}html{scroll-behavior:auto}.rail{animation:none}}
+
+/* ---- CASE STUDY DETAIL (mePro) ---- */
+.d-wrap{display:flex;flex-direction:column;gap:46px;padding:8px 28px 34px}
+.d-lede{font-weight:300;font-size:var(--fs-h4);line-height:1.42;color:var(--c-text);text-wrap:pretty}
+.d-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--c-light-gray);border:1px solid var(--c-light-gray);border-radius:var(--radius-md);overflow:hidden}
+.d-meta .m{background:var(--c-white);padding:18px 20px}
+.d-meta .ml,.d-persona .ml{font-family:var(--font-label);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--c-subtext)}
+.d-meta .mv{font-size:15px;color:var(--c-black);margin-top:7px;line-height:1.45}
+.d-sec{display:flex;flex-direction:column;gap:16px}
+.d-sub{font-family:var(--font-label);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--c-accent)}
+.d-h{font-weight:300;font-size:var(--fs-h3);color:var(--c-black);letter-spacing:-.01em}
+.d-min{font-weight:500;font-size:14px;color:var(--c-black);margin-bottom:12px}
+.d-p{font-size:var(--fs-body-md);line-height:26px;color:var(--c-text);text-wrap:pretty}
+.d-flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.d-step{display:inline-flex;align-items:center;gap:9px;padding:10px 16px;border-radius:var(--radius-pill);background:var(--c-on-background);font-weight:500;font-size:14px;color:var(--c-black)}
+.d-step .n{font-family:var(--font-label);font-size:11px;color:var(--c-accent)}
+.d-arrow{color:var(--c-darker-gray);display:inline-flex}
+.d-arrow svg{width:16px;height:16px}
+.d-grid2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.d-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.d-list li{display:flex;gap:11px;font-size:15px;color:var(--c-text);line-height:1.5}
+.d-list li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c-accent);margin-top:8px;flex:0 0 auto}
+.d-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.d-card{background:var(--c-white);border-radius:var(--radius-md);box-shadow:inset 0 0 0 1px var(--c-border);padding:22px}
+.d-card h5{font-weight:500;font-size:16px;color:var(--c-black);margin-bottom:8px}
+.d-card p{font-size:14px;line-height:22px;color:var(--c-subtext)}
+.d-persona{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.d-persona .pv{font-size:16px;color:var(--c-black);margin-top:7px}
+.d-palette{display:flex;flex-wrap:wrap;gap:18px}
+.d-palette .sw{display:flex;flex-direction:column;gap:8px}
+.d-palette .ch{width:64px;height:48px;border-radius:var(--radius-sm);box-shadow:inset 0 0 0 1px rgba(0,0,0,.10)}
+.d-palette .cl{font-family:var(--font-label);font-size:11px;color:var(--c-subtext)}
+.d-type{display:flex;flex-direction:column;gap:10px;padding:22px;background:var(--c-white);border-radius:var(--radius-md);box-shadow:inset 0 0 0 1px var(--c-border);color:var(--c-black)}
+.d-sol{margin-top:12px;color:var(--c-text);font-size:14px;line-height:22px}
+.d-sol span{font-family:var(--font-label);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--c-accent);margin-right:8px}
+.d-slot{border-radius:var(--radius-md);overflow:hidden;background:var(--c-on-background);box-shadow:inset 0 0 0 1px var(--c-border)}
+.d-shots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.d-shot{aspect-ratio:9/16}
+.d-phases{display:flex;flex-direction:column;gap:16px}
+.d-phase{background:var(--c-white);border-radius:var(--radius-md);box-shadow:inset 0 0 0 1px var(--c-border);padding:24px}
+.d-phase .d-phn{font-family:var(--font-label);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--c-accent)}
+.d-phase h4{font-weight:500;font-size:var(--fs-h5);color:var(--c-black);margin:6px 0 10px}
+.d-phase .d-list{margin-top:14px}
+.d-phaseshot{margin:0;border-radius:16px;overflow:hidden;background:var(--c-white);box-shadow:inset 0 0 0 1px var(--c-border)}
+.d-phaseshot img{display:block;width:100%;height:auto}
+.d-phaseshot figcaption{padding:13px 18px;font-family:var(--font-label);font-size:12px;color:var(--c-subtext);border-top:1px solid var(--c-light-gray);text-align:center}
+.d-gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.d-gcell{margin:0;border-radius:16px;overflow:hidden;background:var(--c-white);box-shadow:inset 0 0 0 1px var(--c-border);aspect-ratio:1/1}
+.d-gcell img{display:block;width:100%;height:100%;object-fit:cover}
+.d-gslot image-slot{width:100%;height:100%}
+@media(max-width:680px){.d-gallery{grid-template-columns:1fr}}
+.d-note{font-size:14px;line-height:22px;color:var(--c-subtext);margin-top:12px}
+.d-flowgroup{display:flex;flex-direction:column;gap:12px}
+.d-flowgroup+.d-flowgroup{margin-top:10px}
+.d-flowlabel{font-family:var(--font-label);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--c-subtext)}
+.d-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.d-stat{background:var(--c-white);border-radius:var(--radius-md);box-shadow:inset 0 0 0 1px var(--c-border);padding:26px}
+.d-stat .v{font-weight:300;font-size:54px;line-height:1;color:var(--c-accent);letter-spacing:-.01em}
+.d-stat .l{font-size:14px;line-height:21px;color:var(--c-subtext);margin-top:14px}
+.d-next{display:grid;grid-template-columns:1fr auto;grid-template-areas:"label arr" "name arr" "desc arr";column-gap:18px;row-gap:5px;align-items:center;margin-top:10px;padding:30px;border-radius:var(--radius-lg);background:var(--c-black);color:var(--c-white);transition:transform var(--dur-base) var(--ease-standard)}
+.d-next:hover{transform:translateY(-2px)}
+.d-nextlabel{grid-area:label;font-family:var(--font-label);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.d-nextname{grid-area:name;font-weight:300;font-size:var(--fs-h3);letter-spacing:-.01em}
+.d-nextdesc{grid-area:desc;font-size:14px;color:rgba(255,255,255,.75);max-width:60ch;line-height:1.5}
+.d-nextarr{grid-area:arr;color:#fff;transition:transform var(--dur-base) var(--ease-standard)}
+.d-next:hover .d-nextarr{transform:translateX(4px)}
+@media(max-width:760px){.d-stats{grid-template-columns:1fr}}
+
+/* ---- mePro design-system showcase ---- */
+.ms{font-family:"Fustat",var(--font-ui);display:flex;flex-direction:column;gap:16px;margin-top:4px}
+.ms-grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ms-card{background:var(--c-white);border-radius:16px;box-shadow:inset 0 0 0 1px var(--c-border);padding:22px;display:flex;flex-direction:column;gap:14px}
+.ms-cap{font-family:var(--font-label);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--c-subtext)}
+.ms-primary{border-radius:16px;background:#1382F3;color:#fff;padding:22px;min-height:120px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 0 16px rgba(19,130,243,.30)}
+.ms-primary .h{font-family:"Fustat";font-size:22px;font-weight:600}
+.ms-primary .x{font-family:"Google Sans Code",monospace;font-size:13px;opacity:.9}
+.ms-ramp{display:flex;border-radius:12px;overflow:hidden}
+.ms-ramp span{flex:1;height:30px}
+.ms-grads{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ms-grad{height:64px;border-radius:16px;position:relative;overflow:hidden}
+.ms-grad span{position:absolute;left:11px;bottom:9px;font-family:"Fustat";font-size:11px;font-weight:600;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.28)}
+.ms-type{display:flex;flex-direction:column;gap:14px}
+.ms-type .t{display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--c-border);padding-bottom:13px}
+.ms-type .t:last-child{border-bottom:0;padding-bottom:0}
+.ms-type .tk{font-family:var(--font-label);font-size:11px;letter-spacing:.04em;color:var(--c-subtext);min-width:92px;flex:0 0 auto}
+.ms-type .tv{color:var(--c-black);line-height:1.2}
+.ms-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.mb{font-family:"Fustat";font-weight:600;font-size:15px;border:0;border-radius:16px;padding:12px 22px;cursor:pointer;transition:background .2s,box-shadow .2s,transform .2s;display:inline-flex;align-items:center;gap:8px}
+.mb svg{width:18px;height:18px}
+.mb:hover{transform:translateY(-1px)}
+.mb-primary{background:#1382F3;color:#fff;box-shadow:0 0 12px rgba(19,130,243,.26)}
+.mb-primary:hover{background:#0E6FD8;box-shadow:0 6px 18px rgba(19,130,243,.32)}
+.mb-secondary{background:#F1F3F6;color:#1A1D21}
+.mb-outline{background:#fff;color:#1382F3;box-shadow:inset 0 0 0 1.5px #1382F3}
+.mb-ghost{background:transparent;color:#4A4F57}
+.mib{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;background:#1382F3;color:#fff;border:0;cursor:pointer;box-shadow:0 0 12px rgba(19,130,243,.26);transition:transform .2s,box-shadow .2s}
+.mib:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(19,130,243,.32)}
+.mchip{font-family:"Fustat";font-weight:500;font-size:13px;padding:8px 14px;border-radius:999px;background:#F1F3F6;color:#1A1D21;display:inline-flex;align-items:center;gap:7px;cursor:pointer}
+.mchip svg{width:14px;height:14px}
+.mchip.sel{background:#1382F3;color:#fff}
+.mchip.out{background:#fff;box-shadow:inset 0 0 0 1px var(--c-border)}
+.mchip .d{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.65}
+.minput,.msearch{display:flex;flex-direction:column;gap:7px}
+.minput .l{font-family:"Fustat";font-size:13px;font-weight:500;color:#1A1D21}
+.minput .box,.msearch .box{display:flex;align-items:center;gap:10px;height:48px;padding:0 14px;border-radius:16px;background:#fff;box-shadow:inset 0 0 0 1px var(--c-border);color:var(--c-subtext)}
+.minput .box:focus-within,.msearch .box:focus-within{box-shadow:inset 0 0 0 1.5px #1382F3,0 0 8px rgba(19,130,243,.18)}
+.minput input,.msearch input{border:0;outline:0;flex:1;font-family:"Fustat";font-size:15px;color:#1A1D21;background:transparent}
+.minput .s{font-family:"Fustat";font-size:12px;color:var(--c-subtext)}
+.msearch .result{display:flex;align-items:center;gap:10px;padding:8px 6px}
+.ms-av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:"Fustat";font-weight:600;font-size:12px;flex:0 0 auto}
+.msearch .nm{font-family:"Fustat";font-weight:500;font-size:14px;color:#1A1D21}
+.msearch .role{font-family:"Fustat";font-size:12px;color:var(--c-subtext);margin-left:auto}
+.mpag{display:flex;gap:8px;align-items:center}
+.mpag b{min-width:38px;height:38px;padding:0 8px;border-radius:12px;display:grid;place-items:center;font-family:"Fustat";font-weight:500;font-size:14px;background:#fff;box-shadow:inset 0 0 0 1px var(--c-border);color:#1A1D21;cursor:pointer}
+.mpag b.on{background:#1382F3;color:#fff;box-shadow:none}
+.mpag b svg{width:16px;height:16px}
+.mattn{border-radius:16px;background:#F4F8FF;box-shadow:inset 0 0 0 1px #E1ECFD;padding:18px;display:flex;flex-direction:column;gap:12px}
+.mattn .top{display:flex;align-items:center;gap:10px}
+.mattn .ic{width:34px;height:34px;border-radius:12px;background:#1382F3;color:#fff;display:grid;place-items:center}
+.mattn .ti{font-family:"Fustat";font-weight:600;font-size:16px;color:#1A1D21}
+.mattn p{font-family:"Fustat";font-size:14px;line-height:21px;color:#4A4F57}
+.mattn .acts{display:flex;gap:8px}
+@media(max-width:760px){.ms-grid2{grid-template-columns:1fr}}
+
+/* ---- Certy design-system showcase ---- */
+.cs-certy{font-family:"Inter",var(--font-ui)}
+.cs-certy .ms-primary{background:#5835BE;box-shadow:0 0 16px rgba(88,53,190,.30)}
+.cs-certy .ms-primary .h,.cs-certy .ms-primary .x{font-family:"Inter"}
+.cs-certy .mb-primary{background:#5835BE;box-shadow:0 0 12px rgba(88,53,190,.24)}
+.cs-certy .mb-primary:hover{background:#48299E;box-shadow:0 6px 18px rgba(88,53,190,.32)}
+.cs-certy .mb-outline{color:#5835BE;box-shadow:inset 0 0 0 1.5px #5835BE}
+.cs-certy .mib{background:#5835BE;box-shadow:0 0 12px rgba(88,53,190,.24)}
+.cs-certy .mib:hover{background:#48299E}
+.cs-certy .mb,.cs-certy .minput .l,.cs-certy .minput input,.cs-certy .minput .s{font-family:"Inter"}
+.cs-certy .minput .box:focus-within{box-shadow:inset 0 0 0 1.5px #5835BE,0 0 8px rgba(88,53,190,.18)}
+.cz-tag{font-family:"Inter";font-weight:600;font-size:11px;padding:5px 11px;border-radius:999px;white-space:nowrap}
+.cz-status{display:flex;flex-direction:column;gap:12px}
+.cz-srow{display:flex;align-items:center;gap:12px}
+.cz-srow .cz-sx{font-family:"Inter";font-size:13px;color:var(--c-subtext)}
+.cz-certs{display:flex;flex-direction:column;gap:10px}
+.cz-cert{display:flex;align-items:center;gap:13px;padding:14px;border-radius:14px;background:#fff;box-shadow:inset 0 0 0 1px var(--c-border)}
+.cz-cic{width:38px;height:38px;border-radius:11px;background:#EEE9FA;color:#5835BE;display:grid;place-items:center;flex:0 0 auto}
+.cz-cmain{flex:1;min-width:0}
+.cz-caddr{font-family:"Inter";font-weight:600;font-size:15px;color:#15131C}
+.cz-cid{font-family:"Inter";font-size:12.5px;color:#5835BE;margin-top:2px}
+.cz-cmeta{font-family:"Inter";font-size:12px;color:var(--c-subtext);margin-top:3px}
+.cz-dd{justify-content:space-between;cursor:pointer}
+.cz-dd span{font-family:"Inter";font-size:15px;color:#15131C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cz-list{display:flex;flex-direction:column}
+.cz-li{display:flex;align-items:center;gap:13px;padding:14px 4px;border-bottom:1px solid var(--c-border)}
+.cz-li:last-child{border-bottom:0}
+.cz-lic{width:34px;height:34px;border-radius:10px;background:#F4F1FB;color:#5835BE;display:grid;place-items:center;flex:0 0 auto}
+.cz-lt{flex:1;display:flex;flex-direction:column}
+.cz-lt b{font-family:"Inter";font-weight:600;font-size:14px;color:#15131C}
+.cz-lt span{font-family:"Inter";font-size:12.5px;color:var(--c-subtext);margin-top:2px}
+
+/* ---- RemitLand design-system showcase ---- */
+.rm{font-family:"Poppins",var(--font-ui)}
+.rm-ax{font-family:"Poppins",sans-serif !important}
+.rm-sf{font-family:"Poppins",sans-serif !important}
+.rm .ms-cap{font-family:"Poppins",var(--font-label)}
+.rm .ms-primary{background:#163300;box-shadow:0 0 16px rgba(22,51,0,.30)}
+.rm .ms-primary .h,.rm .ms-primary .x{font-family:"Poppins",sans-serif}
+.rm .mb{font-family:"Poppins",sans-serif}
+.rm .mb-primary{background:#163300;box-shadow:0 0 12px rgba(22,51,0,.22)}
+.rm .mb-primary:hover{background:#0C2200;box-shadow:0 6px 18px rgba(22,51,0,.30)}
+.rm .mb-accent{background:#FFB82E;color:#163300}
+.rm .mb-accent:hover{background:#F0A800}
+.rm .mb-outline{color:#163300;box-shadow:inset 0 0 0 1.5px #163300}
+.rm .mb-secondary{background:#F0F0F0;color:#141414}
+.rm .mib{background:#163300;box-shadow:0 0 12px rgba(22,51,0,.22)}
+.rm .mib:hover{background:#0C2200}
+.rm-swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.rm-sw{border-radius:11px;padding:13px 12px;min-height:62px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+.rm-sw span{font-family:"Poppins",sans-serif;font-size:12px;font-weight:600}
+.rm-sw b{font-family:"Google Sans Code",monospace;font-size:10.5px;opacity:.85;font-weight:500}
+.rm-wallets{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.rm-wallet{padding:16px;border-radius:14px;background:#fff;box-shadow:inset 0 0 0 1px var(--c-border)}
+.rm-wtop{display:flex;align-items:center;justify-content:space-between}
+.rm-wsym{height:28px;min-width:42px;padding:0 10px;border-radius:8px;background:#163300;color:#fff;display:grid;place-items:center;font-family:"Poppins",sans-serif;font-weight:600;font-size:12px}
+.rm-wcur{font-family:"Poppins",sans-serif;font-size:13px;font-weight:600;color:#163300}
+.rm-wbal{font-family:"Poppins",sans-serif;font-weight:700;font-size:18px;color:#141414;margin-top:14px}
+.rm-wname{font-size:12.5px;color:var(--c-subtext);margin-top:3px}
+.rm-fx{display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:14px;box-shadow:inset 0 0 0 1px var(--c-border);background:#fff}
+.rm-fxtabs{display:flex;gap:6px;background:#F0F0F0;border-radius:10px;padding:4px}
+.rm-fxtabs span{flex:1;text-align:center;padding:8px;border-radius:7px;font-family:"Poppins",sans-serif;font-size:13px;font-weight:600;color:var(--c-subtext);cursor:pointer}
+.rm-fxtabs span.on{background:#163300;color:#fff}
+.rm-fxrate{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:11px;background:#163300;color:#fff}
+.rm-fxrate .p{font-family:"Google Sans Code",monospace;font-size:12px;color:rgba(255,255,255,.7)}
+.rm-fxrate .r{font-family:"Poppins",sans-serif;font-size:22px;font-weight:700;color:#FFB82E}
+.rm-fxrate .r small{font-size:12px;font-weight:600;color:rgba(255,255,255,.85)}
+.rm-fxfield{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;border-radius:11px;box-shadow:inset 0 0 0 1px var(--c-border)}
+.rm-fxfield .l{font-size:12.5px;color:var(--c-subtext)}
+.rm-fxfield .v{font-family:"Poppins",sans-serif;font-weight:600;font-size:16px;color:#141414}
+.rm-fxfield .v b{font-weight:600;font-size:12px;color:var(--c-subtext)}
+.rm-fxmeta{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--c-subtext);padding:0 2px}
+.rm-fxmeta b{font-family:"Poppins",sans-serif;font-weight:600;color:#141414}
+.rm-wa{display:inline-flex;align-items:center;gap:7px;justify-content:center;font-family:"Poppins",sans-serif;font-size:12.5px;font-weight:600;color:#005B13;cursor:pointer}
+.rm-wa svg{width:15px;height:15px}
+.rm-txns{display:flex;flex-direction:column;gap:10px}
+.rm-txn{display:flex;align-items:flex-start;gap:12px;padding:14px;border-radius:13px;box-shadow:inset 0 0 0 1px var(--c-border)}
+.rm-tic{width:36px;height:36px;border-radius:10px;background:#FBF2E1;color:#754D00;display:grid;place-items:center;flex:0 0 auto}
+.rm-tmain{flex:1;min-width:0}
+.rm-trow{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.rm-trow b{font-family:"Poppins",sans-serif;font-weight:600;font-size:14px;color:#141414}
+.rm-tamt{font-family:"Poppins",sans-serif;font-weight:700;font-size:14px;color:#163300}
+.rm-tdesc{font-size:12.5px;color:var(--c-subtext);margin:4px 0 8px}
+.rm-ttime{font-size:11.5px;color:var(--c-darker-gray)}
+.rm-tstatus{font-family:"Poppins",sans-serif;font-weight:600;font-size:11px;padding:4px 10px;border-radius:999px}
+.rm-bens{display:flex;flex-direction:column;gap:10px}
+.rm-ben{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;box-shadow:inset 0 0 0 1px var(--c-border);color:var(--c-subtext)}
+.rm-bav{width:34px;height:34px;border-radius:50%;background:#163300;color:#fff;display:grid;place-items:center;font-family:"Poppins",sans-serif;font-weight:600;font-size:12px;flex:0 0 auto}
+.rm-bt{flex:1;display:flex;flex-direction:column}
+.rm-bt b{font-family:"Poppins",sans-serif;font-weight:600;font-size:14px;color:#141414}
+.rm-bt span{font-family:"Google Sans Code",monospace;font-size:11.5px;color:var(--c-subtext);margin-top:2px}
+.rm-ai{display:flex;gap:14px;align-items:flex-start;padding:18px;border-radius:14px;background:#FBF2E1;box-shadow:inset 0 0 0 1px #F2E4C5}
+.rm-aic{width:38px;height:38px;border-radius:11px;background:#163300;color:#fff;display:grid;place-items:center;flex:0 0 auto}
+.rm-ait{flex:1}
+.rm-ait b{font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;color:#141414}
+.rm-ait p{font-size:13px;line-height:20px;color:#754D00;margin-top:5px}
+.rm-aifields{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}
+.rm-aifields span{font-family:"Google Sans Code",monospace;font-size:12px;padding:5px 10px;border-radius:8px;background:#fff;box-shadow:inset 0 0 0 1px #F2E4C5;color:#754D00}
+@media(max-width:760px){.rm-wallets,.rm-swatches{grid-template-columns:1fr}.rm-ai{flex-direction:column}}
+
+/* ---- Results & impact dashboard ---- */
+.rz{display:flex;flex-direction:column;gap:16px;margin-top:4px}
+.rz-band{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;background:var(--c-black);color:#fff;border-radius:16px;padding:26px 28px}
+.rz-band .rz-bk{font-family:var(--font-label);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:10px}
+.rz-band p{font-size:15px;line-height:1.55;color:rgba(255,255,255,.85);text-wrap:pretty}
+.rz-bstats{display:flex;gap:26px;align-items:center}
+.rz-bstats div{display:flex;flex-direction:column}
+.rz-bstats b{font-size:30px;font-weight:300;letter-spacing:-.01em}
+.rz-bstats span{font-family:var(--font-label);font-size:11px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.04em;margin-top:5px}
+.rz-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.rz-kpi{background:var(--c-white);border-radius:16px;box-shadow:inset 0 0 0 1px var(--c-border);padding:20px;display:flex;flex-direction:column;gap:10px}
+.rz-kpi .top{display:flex;align-items:baseline;gap:6px}
+.rz-kpi .v{font-size:38px;font-weight:300;color:var(--c-black);letter-spacing:-.02em;line-height:1}
+.rz-kpi .u{font-size:17px;color:var(--c-subtext)}
+.rz-chip{align-self:flex-start;font-family:var(--font-label);font-size:11px;font-weight:500;padding:4px 9px;border-radius:999px;background:var(--c-accent-disabled);color:var(--c-accent-active)}
+.rz-chip.pos{background:rgba(48,166,41,.13);color:#1F7A1A}
+.rz-kpi .k{font-weight:500;font-size:14px;color:var(--c-black)}
+.rz-kpi .w{font-size:12.5px;line-height:1.5;color:var(--c-subtext)}
+.rz-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rz-card{background:var(--c-white);border-radius:16px;box-shadow:inset 0 0 0 1px var(--c-border);padding:22px;display:flex;flex-direction:column;gap:18px}
+.rz-card.wide{grid-column:1/-1}
+.rz-h{display:flex;flex-direction:column;gap:3px}
+.rz-h h5{font-weight:500;font-size:16px;color:var(--c-black)}
+.rz-h span{font-size:12.5px;color:var(--c-subtext);line-height:1.45}
+.rz-ba{display:flex;flex-direction:column;gap:15px}
+.rz-row{display:flex;flex-direction:column;gap:7px}
+.rz-row .rl{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.rz-row .rl .n{font-size:13.5px;color:var(--c-black);font-weight:500}
+.rz-row .rl .d{font-family:var(--font-label);font-size:12px;font-weight:600;color:#1F7A1A;white-space:nowrap}
+.rz-bars{display:flex;flex-direction:column;gap:5px}
+.rz-bar{height:9px;border-radius:999px;background:var(--c-on-background);overflow:hidden;position:relative}
+.rz-fill{position:absolute;left:0;top:0;height:100%;border-radius:999px;background:var(--c-accent)}
+.rz-fill.mut{background:var(--c-gray)}
+.rz-bvals{display:flex;justify-content:space-between;font-family:var(--font-label);font-size:11px;color:var(--c-subtext)}
+.rz-funnel{display:flex;flex-direction:column;gap:11px}
+.rz-fstep{display:flex;align-items:center;gap:12px}
+.rz-fstep .fbar{height:36px;border-radius:10px;background:linear-gradient(90deg,var(--c-accent),#3377FF);display:flex;align-items:center;padding:0 14px;color:#fff;font-weight:500;font-size:15px;min-width:48px;box-sizing:border-box}
+.rz-fstep .fl{font-size:13px;color:var(--c-subtext);white-space:nowrap}
+.rz-feat{display:flex;flex-direction:column;gap:13px}
+.rz-fr{display:flex;flex-direction:column;gap:7px}
+.rz-fr .frl{display:flex;justify-content:space-between;font-size:13.5px;color:var(--c-black)}
+.rz-fr .frl b{font-weight:600}
+.rz-donut-wrap{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.rz-donut{width:132px;height:132px;border-radius:50%;position:relative;flex:0 0 auto}
+.rz-donut::after{content:"";position:absolute;inset:27px;background:var(--c-white);border-radius:50%}
+.rz-legend{display:flex;flex-direction:column;gap:9px;min-width:180px;flex:1}
+.rz-legend div{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--c-text)}
+.rz-legend .sw{width:11px;height:11px;border-radius:3px;flex:0 0 auto}
+.rz-legend b{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--c-black);font-weight:500}
+.rz-gauges{display:flex;gap:20px;justify-content:space-around;flex-wrap:wrap}
+.rz-gauge{display:flex;flex-direction:column;align-items:center;gap:12px}
+.rz-ring{width:118px;height:118px;border-radius:50%;display:grid;place-items:center;position:relative}
+.rz-ring::after{content:"";position:absolute;inset:13px;background:var(--c-white);border-radius:50%}
+.rz-ring .gv{position:relative;z-index:1;font-size:26px;font-weight:400;color:var(--c-black)}
+.rz-gauge .gl{font-size:12.5px;color:var(--c-subtext);text-align:center;max-width:13ch}
+.rz-fb{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rz-fbc{display:flex;flex-direction:column;gap:8px}
+.rz-fbc .p{font-size:34px;font-weight:300;color:var(--c-accent);letter-spacing:-.01em;line-height:1}
+.rz-fbc .t{font-size:12.5px;line-height:1.5;color:var(--c-subtext)}
+.rz-heat{display:flex;flex-direction:column;gap:6px}
+.rz-heatrow{display:grid;grid-template-columns:140px repeat(7,1fr);gap:6px;align-items:center}
+.rz-heatrow .hl{font-size:12.5px;color:var(--c-text)}
+.rz-cell{height:28px;border-radius:6px}
+.rz-heataxis{display:grid;grid-template-columns:140px repeat(7,1fr);gap:6px;margin-top:2px}
+.rz-heataxis span{font-family:var(--font-label);font-size:10px;color:var(--c-subtext);text-align:center}
+.rz-pstrip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--c-border);border-radius:16px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--c-border)}
+.rz-ptile{background:var(--c-white);padding:18px 16px;display:flex;flex-direction:column;gap:5px}
+.rz-ptile .v{font-size:28px;font-weight:300;color:var(--c-black);letter-spacing:-.01em}
+.rz-ptile .l{font-size:12px;color:var(--c-subtext);line-height:1.35}
+@media(max-width:860px){.rz-kpis{grid-template-columns:repeat(2,1fr)}.rz-grid{grid-template-columns:1fr}.rz-pstrip{grid-template-columns:repeat(2,1fr)}.rz-fb{grid-template-columns:1fr}.rz-band{flex-direction:column;gap:20px}.rz-bstats{justify-content:space-between;width:100%}.rz-heatrow,.rz-heataxis{grid-template-columns:96px repeat(7,1fr)}}
+
+/* ---- glassmorphism ---- */
+.glass-d{background:rgba(16,18,24,.34);backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);border:1px solid rgba(255,255,255,.18)}
+.nav{background:rgba(250,250,250,.66);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px)}
+.lb .panel{background:rgba(255,255,255,.78);backdrop-filter:blur(26px) saturate(160%);-webkit-backdrop-filter:blur(26px) saturate(160%)}
+.scard .sl{background:rgba(16,18,24,.30);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);padding:8px 12px;border-radius:12px}
+
+/* ---- case index cards ---- */
+.cases{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:760px){.cases{grid-template-columns:1fr}}
+.ci-card{display:flex;flex-direction:column;text-align:left;border:0;padding:0;cursor:pointer;background:var(--c-white);border-radius:16px;box-shadow:inset 0 0 0 1px var(--c-border);overflow:hidden;transition:box-shadow .25s var(--ease-standard),transform .25s var(--ease-standard)}
+.ci-card:hover{box-shadow:0 14px 36px rgba(0,0,0,.11);transform:translateY(-3px)}
+.ci-card:last-child:nth-child(odd){grid-column:1/-1;flex-direction:row}
+.ci-card:last-child:nth-child(odd) .ci-thumb{width:46%;height:auto;min-height:240px;flex:0 0 auto}
+.ci-card:last-child:nth-child(odd) .ci-body{flex:1;justify-content:center}
+@media(max-width:760px){.ci-card:last-child:nth-child(odd){flex-direction:column}.ci-card:last-child:nth-child(odd) .ci-thumb{width:100%;height:188px;min-height:0}}
+.ci-thumb{position:relative;height:188px;background-size:cover;background-position:center}
+.ci-thumb .ci-n{position:absolute;top:14px;left:16px;font-family:var(--font-label);font-size:12px;color:#fff;padding:5px 11px;border-radius:999px}
+.ci-thumb .ci-m{position:absolute;right:14px;bottom:14px;display:flex;flex-direction:column;align-items:flex-end;padding:9px 13px;border-radius:14px}
+.ci-thumb .ci-m b{font-size:20px;font-weight:500;color:#fff;line-height:1}
+.ci-thumb .ci-m span{font-size:10.5px;color:rgba(255,255,255,.85);margin-top:4px}
+.ci-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px}
+.ci-body h3{font-weight:500;font-size:var(--fs-h4);color:var(--c-black);line-height:1.05}
+.ci-type{font-family:var(--font-label);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--c-subtext)}
+.ci-blurb{font-size:14px;line-height:1.55;color:var(--c-subtext);margin-top:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ci-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}
+.ci-tags{display:flex;flex-wrap:wrap;gap:6px}
+.ci-arr{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1px var(--c-border);color:var(--c-black);transition:all .25s var(--ease-standard);flex:0 0 auto}
+.ci-card:hover .ci-arr{background:var(--c-accent);color:#fff;box-shadow:none;transform:rotate(-45deg)}
+.ci-arr svg{width:18px;height:18px}
+
+/* ---- case detail page ---- */
+.ch-hero{position:relative;border-radius:16px;overflow:hidden;height:clamp(380px,54vh,560px)}
+.ch-shot{position:absolute;inset:0}
+.ch-shot image-slot,.cd-shot2 image-slot{width:100%;height:100%;display:block}
+.ch-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,0) 30%,rgba(0,0,0,.60));pointer-events:none;z-index:1}
+.ch-top{position:absolute;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center;z-index:3}
+.ch-back{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-ui);font-weight:500;font-size:14px;color:#fff;padding:11px 17px;border-radius:999px;cursor:pointer;background:rgba(16,18,24,.34);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);border:1px solid rgba(255,255,255,.18);transition:background .25s var(--ease-standard)}
+.ch-back:hover{background:rgba(16,18,24,.58)}
+.ch-back svg{width:18px;height:18px}
+.ch-eyebrow{font-family:var(--font-label);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#fff;padding:9px 14px;border-radius:999px;background:rgba(16,18,24,.34);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);border:1px solid rgba(255,255,255,.18)}
+.ch-panel{position:absolute;left:18px;bottom:18px;right:18px;max-width:740px;padding:26px 28px;border-radius:16px;z-index:3;color:#fff;background:rgba(16,18,24,.30);backdrop-filter:blur(28px) saturate(150%);-webkit-backdrop-filter:blur(28px) saturate(150%);border:1px solid rgba(255,255,255,.16)}
+.ch-panel h1{font-weight:300;font-size:clamp(30px,4.6vw,52px);line-height:1.02;letter-spacing:-.01em}
+.ch-panel .ch-type{color:rgba(255,255,255,.82);font-size:14px;margin-top:10px;font-family:var(--font-ui)}
+.ch-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:18px}
+.ch-metric{display:flex;align-items:baseline;gap:8px}
+.ch-metric b{font-size:30px;font-weight:300;color:#fff;letter-spacing:-.01em}
+.ch-metric span{font-size:13px;color:rgba(255,255,255,.78)}
+.ch-htags{display:flex;gap:7px;flex-wrap:wrap}
+.ch-htag{font-family:var(--font-label);font-size:11px;color:#fff;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22)}
+.cd-body{padding-top:30px;padding-bottom:30px}
+#view-casedetail .d-wrap{padding-left:0;padding-right:0}
+.cd-simple{display:grid;grid-template-columns:1fr 320px;gap:clamp(32px,5vw,64px);align-items:start}
+@media(max-width:860px){.cd-simple{grid-template-columns:1fr;gap:32px}}
+.cd-simple .csb{margin-bottom:26px}
+.cd-simple .csb .spec{display:block;margin-bottom:10px;color:var(--c-accent)}
+.cd-simple .csb p{font-size:var(--fs-body-lg);line-height:28px;color:var(--c-text)}
+.cd-side{position:sticky;top:96px;display:flex;flex-direction:column;gap:18px}
+.cd-shot2{aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:var(--c-on-background);box-shadow:inset 0 0 0 1px var(--c-border)}
+.cd-bigm{padding:24px;border-radius:16px;background:var(--c-black);color:#fff}
+.cd-bigm b{display:block;font-size:46px;font-weight:300;letter-spacing:-.01em;color:#fff;line-height:1}
+.cd-bigm span{font-size:13px;color:rgba(255,255,255,.72);margin-top:10px;display:block;line-height:1.5}
+.cd-nav{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:52px;padding-top:34px;border-top:1px solid var(--c-light-gray)}
+@media(max-width:680px){.cd-nav{grid-template-columns:1fr}}
+.cd-navcard{display:flex;flex-direction:column;gap:6px;padding:22px;border-radius:16px;box-shadow:inset 0 0 0 1px var(--c-border);cursor:pointer;background:var(--c-white);transition:box-shadow .25s var(--ease-standard),transform .25s var(--ease-standard)}
+.cd-navcard:hover{box-shadow:0 12px 30px rgba(0,0,0,.10);transform:translateY(-2px)}
+.cd-navcard.next{text-align:right}
+.cd-navcard .nl{font-family:var(--font-label);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--c-subtext)}
+.cd-navcard .nt{font-weight:500;font-size:var(--fs-h5);color:var(--c-black)}
+.cd-navcard.disabled{opacity:.45;pointer-events:none}
+
+/* ---- card hover language: drop hairline, add soft shadow ---- */
+.strength,.ecard,.d-card,.d-phase,.ms-card{transition:box-shadow .25s var(--ease-standard),transform .25s var(--ease-standard)}
+.strength:hover,.ecard:hover,.d-card:hover,.d-phase:hover,.ms-card:hover{box-shadow:0 8px 26px rgba(0,0,0,.08);transform:translateY(-2px)}
+image-slot{display:block;width:100%;height:100%}
+@media(max-width:760px){.d-grid2,.d-cards{grid-template-columns:1fr}.d-shots{grid-template-columns:1fr 1fr}.d-persona{grid-template-columns:1fr}.d-wrap{padding-left:18px;padding-right:18px}}
+</style>
+</head>
+<body style="background-color: rgb(255, 255, 255); font-family: &quot;Google Sans Flex&quot;">
+<div id="app">
+  <header class="nav" style="font-family: &quot;Google Sans Flex&quot;; background-color: rgba(255, 255, 255, 0.66)">
+    <button class="brandbtn" data-go="work" aria-label="Home">
+      <span class="brandnm" style="font-weight: 400">Kasra Nourani</span>
+    </button>
+    <nav class="navlinks" id="navlinks">
+      <span class="navunderline" id="navunderline"></span>
+      <button class="navlink active" data-tab="work" style="font-weight: 400">Work</button>
+      <button class="navlink" data-tab="about" style="font-weight: 400">About</button>
+      <button class="navlink" data-tab="case" style="font-weight: 400">Case studies</button>
+      <button class="psg-btn psg-btn--primary psg-btn--md navcta" data-tab="contact"><span class="psg-btn__label" style="font-weight: 400; font-size: 16px">Contact</span></button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- WORK -->
+    <section class="view active" id="view-work" data-screen-label="Work">
+      <div class="hero reveal">
+        <span class="spec">Kasra Nourani — Malta · CET (UTC+1) · Adaptable worldwide</span>
+        <h1>Senior Product Designer<span class="pt">.</span> Evaluating digital experiences for clarity, usability, and quality.</h1>
+        <p style="font-weight: 300"><b style="font-weight: 500">8+ years</b> assessing web &amp; mobile products across <b>Healthcare, FinTech, and workflow platforms</b> — identifying issues and edge cases, refining <b>AI-assisted features</b>, and turning findings into clear, actionable change.</p>
+        <div class="ctarow">
+          <button class="psg-btn psg-btn--accent psg-btn--lg" data-tab="about">Why me?</button>
+        </div>
+      </div>
+      <div class="hero-rail reveal" id="herorail">
+        <div class="rail" id="rail1"></div>
+      </div>
+      <div class="wrap pad reveal">
+        <div class="metrics-strip" id="mstrip"></div>
+      </div>
+      <div class="wrap pad reveal" style="padding-top:56px;padding-bottom:64px">
+        <div class="sechead"><h2>Selected work</h2><span class="spec">2018 — Present</span></div>
+        <div class="grid3" id="grid"></div>
+      </div>
+      <div class="wrap pad reveal" style="padding-bottom:64px;font-family: &quot;Google Sans Flex&quot;">
+        <div class="sechead"><h2>Design enhancements</h2></div>
+        <div class="enh" id="enh"></div>
+      </div>
+      <div class="wrap pad reveal" style="padding-bottom:96px">
+        <div class="sechead"><h2>Writing</h2><span class="spec">Notes &amp; essays</span></div>
+        <div class="articles" id="articles"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="view" id="view-about" data-screen-label="About">
+      <div class="wrap pad" style="padding-top:48px;padding-bottom:96px">
+        <div class="about2 reveal">
+          <div class="acol">
+            <h2>Why me?</h2>
+            <div class="acopy" id="abouttext"></div>
+            <div class="actas">
+              <button class="psg-btn psg-btn--primary psg-btn--lg" data-tab="contact">Get in touch</button>
+              <a class="psg-btn psg-btn--outline psg-btn--lg" href="assets/Kasra Nourani - Resume.pdf" download><span class="psg-btn__ico" id="ab-dl"></span>Download résumé</a>
+            </div>
+          </div>
+          <div class="portrait"></div>
+        </div>
+
+        <div class="block reveal">
+          <div class="sechead"><h2>Core strengths</h2><span class="spec">How I work</span></div>
+          <div class="strengths" id="strengths"></div>
+        </div>
+
+        <div class="block reveal">
+          <div class="sechead"><h2>Experience</h2><span class="spec">2018 — Present</span></div>
+          <div id="timeline"></div>
+          <div class="tools" id="tools" style="margin-top:28px"></div>
+        </div>
+
+        <div class="block reveal">
+          <div class="sechead"><h2>Education &amp; training</h2></div>
+          <div class="eduwrap">
+            <div class="edu">
+              <h4>B.Sc. Computer Engineering</h4>
+              <div class="x">Yerevan State University</div>
+            </div>
+            <div class="edu">
+              <h4>Additional training</h4>
+              <ul>
+                <li>UX Fundamentals &amp; Practical Usability — Udemy</li>
+                <li>Rapid Product Design — Udemy</li>
+                <li>UI/UX Design — Memorisely</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section class="view" id="view-case" data-screen-label="Case studies">
+      <div class="wrap pad" style="padding-top:48px;padding-bottom:96px">
+        <div class="csintro reveal">
+          <span class="spec">Case studies</span>
+          <h2 style="margin-top:14px">A few closer looks<span class="pt">.</span></h2>
+          <p>Open any case study for the full story — context, process, and the measurable outcomes that followed.</p>
+        </div>
+        <div class="cases reveal" id="cases"></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="view" id="view-contact" data-screen-label="Contact">
+      <div class="wrap pad" style="padding-top:64px;padding-bottom:48px">
+        <div class="contact2 reveal">
+          <div>
+            <h2>Let's talk<span class="pt">.</span></h2>
+            <p class="clead">Open to senior product design and evaluation roles, plus select freelance work. Tell me about the problem you're solving.</p>
+            <div class="crows" id="crows"></div>
+          </div>
+          <div class="psg-card psg-card--shadow psg-card--pad-lg">
+            <div class="psg-card__body" id="formhost"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDY — dedicated page -->
+    <section class="view" id="view-casedetail" data-screen-label="Case study">
+      <div id="casedetail-inner"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <nav class="flinks">
+      <button class="flink" data-tab="work">Work</button>
+      <button class="flink" data-tab="about">About</button>
+      <button class="flink" data-tab="case">Case studies</button>
+      <button class="flink" data-tab="contact">Contact</button>
+      <a class="flink" href="mailto:kasra.nourani@gmail.com">Email</a>
+      <a class="flink" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+    <span class="fcopy">All rights reserved for Kasra Nourani 2026</span>
+  </footer>
+</div>
+
+<div class="lb" id="lb"><div class="panel" id="lbpanel"></div></div>
+
+<script src="assets/image-slot.js"></script>
+<script src="assets/icons/icons.js"></script>
+<script>
+function icon(name,size){const d=(window.ICONS||{})[name];if(!d)return "";return `<svg width="${size||18}" height="${size||18}" viewBox="${d.viewBox}" fill="none">${d.body}</svg>`;}
+
+/* ---------- data (from résumé) ---------- */
+const HERO_METRICS=[
+  {mv:"300K+",ml:"Users scaled to"},
+  {mv:"9",ml:"Products validated"},
+  {mv:"8+",ml:"Years experience"},
+  {mv:"87%",ml:"Preference vs. peers"},
+];
+const PROJECTS=[
+  {name:"mePro",tag:"HealthTech · AI",year:"2026",kind:"img",src:"assets/images/mepro-hero.jpg",metric:"87%",ml:"preferred vs. competitors",
+   blurb:"An AI-assisted therapy platform for therapists and clients — a therapist dashboard plus a companion mobile app. Led product strategy, design system, and AI experience from research to launch."},
+  {name:"Certy",tag:"Field Service · Mobile",year:"2025",kind:"img",src:"assets/images/certy-hero.jpg",metric:"−40%",ml:"task completion time",
+   blurb:"A mobile-first app that lets electricians create, manage, and issue compliant electrical certificates from the field — replacing a slow paper workflow with a guided digital one. Led product, design system, and the certificate-creation flow."},
+  {name:"Remitland",tag:"FinTech · Cross-Border",year:"2025",kind:"img",src:"assets/images/remitland-hero2.webp",metric:"96%",ml:"task completion",
+   blurb:"Transformed a ten-year-old physical currency-exchange business into a global digital FinTech platform — website, dashboard, and mobile app. Led strategy, AI feature discovery, the design system, and usability testing."},
+  {name:"Actimeety",tag:"Social Platform",year:"2025",kind:"img",src:"assets/images/actimeety-hero.jpg",metric:"+65%",ml:"engagement in testing",
+   blurb:"Evaluated user flows and interaction patterns across a social product, identifying usability issues and improvement opportunities through iterative review."},
+  {name:"GO2Train",tag:"E-Learning · Mobile",year:"2022",kind:"img",src:"assets/images/go2train-hero.jpg",metric:"+38%",ml:"course completion",
+   blurb:"A language-learning platform connecting students with tutors — course discovery, lessons, messaging, and subscriptions. Clarified the learning path and made progress visible to lift completion."},
+  {name:"Minto",tag:"Events Platform · Mobile",year:"2024",kind:"img",src:"assets/images/minto-hero.webp",metric:"+50%",ml:"engagement",
+   blurb:"Analyzed interaction behavior and engagement patterns, then reshaped the moments that mattered to lift sustained participation."},
+];
+const ABOUT=[
+  ["I'm a Senior Product Designer with ","8+ years"," of experience evaluating digital experiences across web and mobile. My work spans ","Healthcare, FinTech, and workflow platforms",", from early-stage products to systems serving hundreds of thousands of users."],
+  ["I specialize in ","assessing usability, clarity, and visual quality","—identifying issues, edge cases, and improvement opportunities, then delivering ","clear, concise, actionable feedback"," teams can act on."],
+  ["Recently I've focused on ","AI-assisted features",", evaluating output and interaction quality to keep them ","reliable and genuinely usable"," — applying structured thinking across complex, repeated evaluation tasks."],
+];
+const STRENGTHS=[
+  {ic:"Page",h:"Content & output evaluation",p:"Clarity, accuracy, and usability across text and UI."},
+  {ic:"Compass",h:"Critical thinking",p:"Identifying inconsistencies, edge cases, and weak outputs."},
+  {ic:"Book",h:"Editorial judgment",p:"A consistent sense of quality across copy and interface."},
+  {ic:"CheckCircle",h:"Attention to detail",p:"High consistency across repeated evaluation tasks."},
+  {ic:"DesignPencil",h:"UX & visual evaluation",p:"Layout, hierarchy, and interaction quality under scrutiny."},
+  {ic:"Send",h:"Structured feedback",p:"Clear, prioritized input teams can act on."},
+  {ic:"Cube",h:"AI & assisted systems",p:"Evaluating AI-generated outputs and the flows around them."},
+  {ic:"Code",h:"Systems & standards",p:"Consistency across design systems and products."},
+];
+const TOOLS=["Figma","FigJam","Prototyping","Design systems","Heuristic evaluation","Usability testing","ChatGPT","Claude","Midjourney","Cursor","v0","Perplexity"];
+const EXPERIENCE=[
+  {yr:"2024 — Present",role:"Product Designer",co:"Hashthink Technologies Inc.",place:"Remote"},
+  {yr:"2024 — 2026",role:"Product Designer",co:"Actimeety",place:"Remote"},
+  {yr:"2022 — 2024",role:"Lead Product Designer",co:"G2 Holding",place:"On-site · Ankara"},
+  {yr:"2018 — 2021",role:"Freelance Product Designer",co:"Independent",place:"Remote"},
+];
+const CASES=[
+  {n:"01",title:"mePro",type:"AI Mental Healthcare Platform · Web + Mobile",metric:"87%",mlabel:"preferred over competitors",tags:[["HealthTech","accent"],["AI-assisted","neutral"],["Web + Mobile","outline"]],cover:"assets/images/mepro-hero.jpg",
+   detail:{
+     tagline:"Redefining mental healthcare through AI collaboration — an AI-assisted therapy platform for therapists and clients.",
+     overviewHead:"An AI partner for therapy",
+     dsBlurb:"mePro runs on its own product design system — built on <b>Fustat</b> type, a single electric-blue primary, and a soft, glassy surface language, with a parallel <b>Work&nbsp;Sans</b> scale for mobile. A sample of the foundations and component library:",
+     meta:[["Duration","8+ Months (Ongoing)"],["Role","Lead Product Designer"],["Platforms","Web Dashboard · iOS · Android"],["Industry","Mental Healthcare / HealthTech SaaS"],["Project Stage","Recently launched to market"]],
+     responsibilities:["Product Strategy","UX Research","Competitive Analysis","Information Architecture","User Experience Design","User Interface Design","Design System","AI Experience Design","Prototyping","Developer Handoff"],
+     overview:["mePro is an AI-assisted therapy platform built for therapists and clients. The platform combines professional mental healthcare with AI to improve communication, reduce administrative work, and help therapists deliver more effective care.","Designed as a modern alternative to platforms such as SimplePractice, JaneApp, and BetterPractice, mePro focuses on making therapy more accessible while increasing therapist productivity through AI collaboration."],
+     challenge:["Many therapy platforms focus on scheduling and documentation but overlook one of the biggest challenges in mental healthcare: communication.","Clients often struggle to explain their emotions, forget important details between sessions, or feel uncomfortable discussing sensitive topics.","Therapists, on the other hand, spend significant time documenting sessions, preparing treatment notes, and managing administrative tasks that reduce the time available for actual patient care.","The challenge was to create an experience where AI supports both sides without replacing the therapist."],
+     goals:["Build a modern AI-assisted therapy platform.","Help clients communicate more openly.","Reduce therapist administrative workload.","Increase therapist capacity without sacrificing quality of care.","Deliver a seamless experience across web and mobile."],
+     competitorsIntro:"The project began with an extensive competitive analysis of leading therapy platforms.",
+     competitors:["SimplePractice","JaneApp","BetterPractice","Additional mental healthcare platforms"],
+     researchFocus:["Therapist workflows","Appointment management","Documentation","Client communication","Mobile experience","AI opportunities","User pain points"],
+     competitorsNote:"The findings shaped the foundation of the product strategy and feature roadmap.",
+     phases:[
+       {ph:"Phase 1",title:"Product Strategy",body:"Defined product goals, user personas, feature priorities, and competitive positioning."},
+       {ph:"Phase 2",title:"Design System",body:"Before designing individual products, I created a scalable design system to ensure consistency across the therapist dashboard and client mobile application.",list:["Color palette","Typography","Spacing","Grid system","Components","Forms","Navigation","Icons","Accessibility guidelines"],note:"This significantly accelerated future design iterations and developer implementation."},
+       {ph:"Phase 3",title:"Therapist Dashboard",body:"The dashboard became the operational center for therapists.",list:["Client management","AI-assisted therapy insights","Session notes","Progress tracking","Appointment scheduling","Online consultations","In-person consultations","Treatment history","Analytics","Administrative workflows"],note:"Rather than replacing therapists, AI was designed to function as an intelligent assistant that enhances clinical decision making while keeping professionals in complete control."},
+       {ph:"Phase 4",title:"Client Mobile App",body:"At the same time, I designed the companion mobile application for clients. The app enables users to:",list:["Book therapy sessions","Communicate with therapists","Track personal progress","Complete guided exercises","Receive AI-assisted support","Prepare before therapy sessions","Continue engagement between appointments"],note:"The mobile experience was designed to reduce barriers that often prevent people from openly discussing sensitive issues.",shot:"assets/images/mepro-wireframes.webp",shotAlt:"mePro low-fidelity wireframes — therapist dashboard, client list, profile, AI chat, and client mobile app screens",shotCap:"Low-fidelity wireframes — therapist dashboard &amp; client management (web) and the companion client mobile app."}
+     ],
+     aiCollab:["One of the product's biggest innovations was positioning AI as a collaborative partner rather than a replacement.","For clients, AI creates a safe space to express thoughts before meeting with a therapist, helping them organize emotions and communicate more effectively.","For therapists, AI assists with documentation, summarizes sessions, identifies patterns, and prepares insights that support clinical decision making while preserving full therapist oversight.","This collaborative approach strengthens the therapeutic relationship instead of replacing it."],
+     flowTherapist:["Dashboard","Manage Clients","Review AI Insights","Conduct Session","Generate Session Summary","Track Progress"],
+     flowClient:["Open App","Chat with AI","Book Session","Attend Therapy","Continue Between Sessions","Monitor Progress"],
+     features:[["AI-Assisted Therapy","AI helps clients express difficult emotions and provides therapists with structured insights."],["Therapist Workspace","A centralized dashboard for managing clients, appointments, documentation, and treatment progress."],["Smart Documentation","Automatically generated summaries significantly reduce manual documentation."],["Hybrid Sessions","Support for both online and in-person therapy sessions from a unified workflow."],["Progress Tracking","Long-term tracking of client wellbeing with AI-assisted observations and therapist input."]],
+     dsAssets:["Color Palette","Typography","Grid System","Component Library","Icon Set","Mobile Components","Dashboard Components"],
+     resultsIntro:"Following MVP completion, the therapist dashboard and mobile application were presented to 25 mental health clinics and 180+ therapists and clients. The response validated the product direction.",
+     outcomes:[["83%","Higher client engagement compared to competing platforms, driven by AI-assisted communication."],["72%","Reduction in therapist administrative workload through AI-assisted documentation and workflow automation."],["87%","Participants preferred mePro over competing platforms during MVP evaluation."]],
+     resultsNote:"The platform has since entered the market and continues to evolve with ongoing feature development and user feedback.",
+     challenges:[["Designing Trust in AI","Mental healthcare requires transparency and confidence. Instead of allowing AI to make clinical decisions, every AI-generated recommendation remains fully reviewable and editable by therapists — maintaining professional control while increasing efficiency."],["Balancing Automation with Human Care","The goal was never to automate therapy. Every design decision reinforced the therapist as the primary caregiver, with AI acting as an intelligent assistant that enhances, rather than replaces, human expertise."]],
+     learned:["Designing AI for healthcare is fundamentally different from designing AI for productivity.","Users don't simply want automation — they want confidence, transparency, and control.","The most successful AI experiences are those that feel collaborative rather than autonomous.","This project strengthened my ability to design complex AI-powered products, create scalable systems across multiple platforms, and balance business objectives with deeply human user needs."],
+     gallery:[{img:"assets/images/mepro-gallery-1b.webp",alt:"mePro AI Therapy platform — client insights, AI summary, behavioral data, and reports"},{img:"assets/images/mepro-gallery-2.webp",alt:"mePro — therapist chart view on laptop and client mobile journaling app"}],
+     next:{name:"Actimeety",desc:"Designing a social platform that helps people discover, organize, and join real-world activities."}
+   }},
+  {n:"02",title:"Certy",type:"Field-Service Certification App · iOS · Android",metric:"40%",mlabel:"faster task completion",tags:[["Field Service","accent"],["Workflow","neutral"],["iOS · Android","outline"]],cover:"assets/images/certy-hero.jpg",
+   detail:{
+     ds:'certy',
+     tagline:"Turning hours of electrical paperwork into a few guided taps — a mobile-first app that lets electricians create, manage, and issue compliant certificates from the field.",
+     overviewHead:"Compliance, without the clipboard",
+     dsBlurb:"Certy runs on its own mobile-first design system — built on <b>Inter</b> type, a single confident <b>purple primary (#5835BE)</b>, and a clear status-colour language (incomplete / complete / draft). A sample of the foundations and component library:",
+     meta:[["Duration","4 Months"],["Role","Product Designer"],["Platforms","iOS · Android"],["Industry","Field Service / Compliance SaaS"],["Project Stage","Launched & in active use"]],
+     responsibilities:["Product Strategy","UX Research","Workflow Mapping","Information Architecture","User Experience Design","User Interface Design","Design System","Prototyping","Developer Handoff"],
+     overview:["Certy is a mobile-first app that helps electricians produce compliant electrical certificates — EICs, EICRs, and minor-works certs — directly on site, instead of filling in paper forms and re-typing them at the office later.","The product replaces a slow, error-prone, multi-step paper workflow with a guided digital one: pick a certificate type, work through structured steps, and issue a finished PDF the same day.","Designed as a faster, friendlier alternative to legacy compliance software, Certy focuses on speed, clarity, and getting the job signed off without a desk."],
+     challenge:["Electricians lose billable hours to repetitive certification paperwork after every job. The forms are long, full of jargon, and unforgiving — one missed field can invalidate a certificate.","Existing certification software was built for desktops and accountants, not for someone standing in a loft with one free hand and patchy signal.","The challenge was to automate a legally rigorous workflow without hiding the detail that makes a certificate valid — keeping the electrician confident and in control at every step."],
+     goals:["Replace manual paper certificates with a guided mobile workflow.","Minimise typing and repeated data entry on site.","Make certificate status and progress obvious at a glance.","Reduce errors and incomplete submissions.","Let any electrician issue a compliant PDF the same day."],
+     competitorsIntro:"The project started with an audit of how electricians actually certify work today — paper pads, spreadsheets, and a handful of legacy desktop tools.",
+     competitors:["iCertifi","NICEIC tools","Paper / PDF templates","Generic form builders"],
+     researchFocus:["On-site workflows","Certificate types & fields","Data re-entry pain points","Status tracking","Offline / poor-signal use","One-handed mobile use","Compliance requirements"],
+     competitorsNote:"The findings made the priorities obvious: speed, clarity, and trust in the output above everything else.",
+     phases:[
+       {ph:"Phase 1",title:"Workflow Mapping",body:"Broke each certificate type down into its real steps, then found where the paper process forced re-entry, hesitation, or mistakes.",list:["Certificate type audit","Step-by-step task maps","Friction & error points","Data-reuse opportunities","Compliance requirements"],shot:"assets/images/certy-wireframes.webp",shotAlt:"Certy low-fidelity wireframes — signup/verification, certificate templates, all certificates, dictation, observations, board & circuit details, profile, subscriptions, and AI population",shotCap:"Low-fidelity wireframes — the full certificate-creation journey, from signup and templates through dictation, observations, and AI-assisted population."},
+       {ph:"Phase 2",title:"Design System",body:"Built a focused mobile design system so every certificate flow felt consistent and fast to extend.",list:["Colour & status palette","Inter type scale","Spacing & grid","Certificate cards","List items","Buttons & inputs","Dropdowns","Status tags"],note:"A tight component set kept the long, form-heavy flows visually calm and quick to build."},
+       {ph:"Phase 3",title:"Certificate Creation Flow",body:"The core of the product: a guided, step-based flow that turns a long legal form into a series of clear, single-purpose screens.",list:["Pick certificate type","Pre-filled job & client details","Step-by-step inspection fields","Inline validation","Review before issue","Generate & share PDF"],note:"Smart defaults and reused job data removed most of the repetitive typing that made paper so slow."},
+       {ph:"Phase 4",title:"Dashboard & Management",body:"A home base where electricians track every certificate and pick up exactly where they left off.",list:["Certificate dashboard","Status at a glance","Search & filter","Drafts & resume","History & re-issue","Client records"],note:"Clear incomplete / complete states meant nothing fell through the cracks between jobs."}
+     ],
+     flows:[["Create a certificate",["Open Certy","New Certificate","Choose Type","Complete Steps","Review","Issue PDF"]],["Resume & manage",["Dashboard","Filter by Status","Open Draft","Finish Steps","Mark Complete","Share"]]],
+     features:[["Guided Certificate Builder","Long compliance forms broken into clear, single-purpose steps with inline validation."],["Status at a Glance","Every certificate is tagged incomplete, complete, or draft — so nothing gets missed."],["Smart Re-use","Job and client details flow through the certificate, killing repetitive data entry."],["Same-day PDF","Generate and share a compliant certificate PDF straight from the phone."],["Drafts & Resume","Start on site, finish later — the workflow always remembers where you stopped."]],
+     dsAssets:["Colour & Status","Typography","Certificate Cards","List Items","Buttons","Inputs & Dropdowns","Icon Set"],
+     process:[
+       ["64","Screens designed"],["42","Design-system components"],["9","Certificate types mapped"],["7","Major design iterations"],["19","Design reviews held"],
+       ["5","Interactive prototypes"],["28","Usability fixes"],["16","Field interviews"],["4","Competitor tools audited"],["3","Personas developed"],
+     ],
+     results:{
+       accent:'#5835BE',accentActive:'#3F2599',accentDisabled:'#E7E0FA',heatRGB:'88,53,190',
+       bandKicker:'How this was measured',
+       bandText:'Figures come from a field beta with 12 electrical contractors and moderated on-site testing with 64 electricians over six weeks — early validation evidence, not steady-state production analytics.',
+       band:[['12','contractor firms'],['64','electricians'],['6 wks','field beta']],
+       baSub:'Time and completion across core certification tasks',funnelSub:'From beta invite to 6-week retention',featSub:'Share of electricians using each feature weekly',usageSub:'Where time in the app is spent',gaugeSub:'Post-beta survey, 5-point scale',
+       heatNote:'Relative feature activity by weekday during the beta — illustrative, pending production instrumentation.',
+       heat:[['Certificate builder',[.95,.85,.9,.8,.9,.4,.15]],['Dashboard',[.7,.65,.75,.7,.8,.35,.2]],['Drafts & resume',[.55,.6,.5,.65,.6,.3,.2]],['Search & filter',[.4,.45,.5,.45,.55,.25,.1]],['Share / export',[.5,.55,.6,.55,.7,.3,.15]]],
+       kpis:[
+         {v:'40',u:'%',d:'−40% vs. paper baseline',pos:1,k:'Faster task completion',w:'Issuing a certificate end-to-end went from a desk-bound chore to a few minutes on site.'},
+         {v:'92',u:'%',d:'89–95% across cert types',k:'Task success rate',w:'Electricians finish certificates without help — critical when they\'re mid-job with one free hand.'},
+         {v:'95',u:'/100',d:'+27 vs. 68 benchmark',pos:1,k:'System Usability Scale',w:'A near-best-in-class score for a form-heavy compliance tool — the guided flow paid off.'},
+         {v:'78',u:'%',d:'74–82% of testers',k:'Preferred Certy over paper',w:'Given the choice, most electricians would not go back to paper or spreadsheets.'},
+       ],
+       beforeAfter:[
+         {l:'Issue one certificate',bt:'~22 min',at:'~9 min',b:100,a:41,d:'−59% time'},
+         {l:'Repeated data entry',bt:'Baseline',at:'−71%',b:100,a:29,d:'−71%'},
+         {l:'Incomplete submissions',bt:'Baseline',at:'−46%',b:100,a:54,d:'−46%'},
+         {l:'Certificates per day',bt:'Baseline',at:'+33%',b:62,a:82,d:'+33%'},
+         {l:'Same-day issue rate',bt:'Baseline',at:'+58%',b:48,a:76,d:'+58%'},
+       ],
+       funnel:[['Firms invited',12,100],['Onboarded',11,92],['Active in week 1',10,83],['Retained at 6 weeks',8,67]],
+       features:[['Certificate builder',88],['Status dashboard',74],['Drafts & resume',63],['Smart re-use',57],['Search & filter',41]],
+       usage:[['Certificate builder',46,'#5835BE'],['Dashboard',24,'#7B5BD6'],['Drafts & resume',18,'#A98BE8'],['Search & export',12,'#D2C2F3']],
+       gauges:[['Electrician satisfaction','4.6',92],['Confidence in output','4.8',96]],
+       feedback:[['88%','of electricians said Certy noticeably cut their after-hours paperwork.'],['81%','felt more confident their certificates were complete and compliant.'],['69%','of certificates are now started and finished on the same site visit.']],
+     },
+     challenges:[["Rigour without friction","Certificates are legal documents — skipping a field isn't an option. Inline validation and a final review step keep every cert compliant while still feeling fast, so speed never comes at the cost of correctness."],["Designing for the field","The real user is standing on a ladder with patchy signal, not sitting at a desk. Large tap targets, a resilient draft-and-resume model, and obvious status states made the app genuinely usable on site."]],
+     learned:["Automating a compliance workflow means protecting the detail, not hiding it.","On-site tools live or die by how forgiving they are — drafts, defaults, and clear status matter more than polish.","Breaking a long legal form into small, single-purpose steps does more for completion than any visual treatment.","This project sharpened my ability to turn rigid, regulated processes into calm, confidence-building mobile experiences."],
+     gallery:[{placeholder:"Drop a Certy shot"},{placeholder:"Drop a Certy shot"}],
+     next:{name:"Remitland",desc:"Closing the error-prone paths in a high-stakes financial onboarding and transaction flow."}
+   }},
+  {n:"03",title:"RemitLand",type:"FinTech · Cross-Border Payments · Web + Mobile",metric:"96%",mlabel:"task completion in testing",tags:[["FinTech","accent"],["Cross-border","neutral"],["Web + Mobile","outline"]],cover:"assets/images/remitland-hero2.webp",
+   detail:{
+     ds:'remit',
+     tagline:"Transforming a ten-year-old physical currency-exchange business into a global digital FinTech platform — website, dashboard, and mobile app.",
+     overviewHead:"From the exchange counter to the world",
+     dsBlurb:"RemitLand runs on its own product design system — built on <b>Poppins</b> throughout, a deep money-green primary <b>(#163300)</b> with a gold accent <b>(#FFB82E)</b>, and a calm, data-dense surface language shared across website, dashboard, and mobile. A sample of the foundations and component library:",
+     meta:[["Duration","9 Months"],["Role","Lead Product Designer"],["Platforms","Website · Dashboard · iOS · Android"],["Industry","FinTech / Cross-Border Payments"],["Location","Toronto, Canada"],["Project Stage","MVP Launched"]],
+     responsibilities:["Product Strategy","UX Research","Competitive Analysis","Information Architecture","User Experience Design","User Interface Design","AI Feature Discovery","Design System","Prototyping","Usability Testing","Developer Handoff"],
+     overview:["RemitLand began as a well-established physical currency-exchange business with more than ten years serving customers in Toronto. The client wanted to expand beyond brick-and-mortar and become a fully digital financial platform serving customers worldwide.","The vision: a secure ecosystem where users could transfer money internationally, exchange currencies, manage multi-currency balances, and monitor transactions from both web and mobile.","The project spanned three connected products — a marketing website, a customer dashboard, and a mobile app. The objective wasn't simply to digitize an existing business, but to build a modern financial experience that could compete with today's leading fintech products."],
+     challenge:["Cross-border money transfers are inherently complex. Users navigate identity verification, multiple currencies, fluctuating exchange rates, banking details, and transaction tracking — all while trusting the platform with their finances.","Existing competitors offered powerful functionality but often overwhelmed users with complicated interfaces and lengthy onboarding.","The challenge was to simplify these financial operations without sacrificing transparency, security, or user confidence."],
+     goals:["Transform a traditional exchange business into a global digital platform.","Simplify international transfers and currency exchange.","Build one consistent experience across website, dashboard, and mobile.","Reduce friction throughout onboarding and verification.","Increase trust through transparent financial workflows.","Explore AI-assisted features that reduce manual data entry."],
+     competitorsIntro:"The project began with an in-depth competitive analysis to understand how leading fintech companies solve complex financial problems — identifying best practices and UX shortcomings rather than copying competitors.",
+     competitors:["Wise","Revolut","Kraken","Remitly","PayPal","OFX"],
+     researchFocus:["Onboarding & KYC","Wallet management","International transfers","Currency exchange","Security patterns","Transaction history","Mobile usability","Trust-building"],
+     competitorsNote:"These findings directly shaped the product roadmap and information architecture.",
+     phases:[
+       {ph:"Phase 1",title:"User Flows & Wireframes",body:"I mapped the complete customer journey across every platform before designing interfaces, validating navigation and hierarchy with low-fidelity wireframes.",list:["Registration","KYC verification","Wallet creation","Currency exchange","Money transfers","Beneficiary management","Transaction tracking","Account settings"],shot:"assets/images/remitland-wireframes.webp",shotAlt:"RemitLand low-fidelity wireframes — desktop sign up, mobile sign up, beneficiaries dashboard, and marketing site",shotCap:"Low-fidelity wireframes — sign-up (desktop &amp; mobile), beneficiaries dashboard, and marketing site."},
+       {ph:"Phase 2",title:"AI Feature Exploration",body:"Working closely with engineering, I identified where AI could genuinely improve the experience and reduce manual entry.",list:["Invoice scanning","Receipt scanning","Automatic form completion","OCR data extraction","Smart beneficiary suggestions","AI-assisted transfer prep","Intelligent categorization"],note:"These concepts significantly reduced manual data entry and opened opportunities for future product expansion."},
+       {ph:"Phase 3",title:"Usability Testing & Iteration",body:"Early tests exposed friction in transfer setup, beneficiary creation, navigation, exchange-rate clarity, and verification. Rather than polishing visuals, I returned to the wireframes and redesigned the workflows — using AI-assisted ideation and repeated A/B testing.",list:["First redesign — 67% usability improvement vs. original","Second redesign — 97% task-success in moderated testing"],note:"The extra iteration sharpened navigation, cut confusion, and shortened task completion time."},
+       {ph:"Phase 4",title:"Design System",body:"With workflows validated, I built a scalable design system shared across all three products.",list:["Color palette","Typography","Grid & spacing","Components","Form controls","Charts","Wallet components","Data tables","Icons","Accessibility standards"],note:"The system enabled rapid development while keeping the ecosystem visually consistent."},
+       {ph:"Phase 5",title:"High-Fidelity Design",body:"The final MVP delivered three fully connected products — marketing website, customer dashboard, and mobile app — covering everything from landing pages and authentication to multi-currency wallets, transfers, and biometric login."}
+     ],
+     aiCollabHead:"AI in the product",
+     aiCollab:["AI was intentionally positioned as a productivity tool, never a replacement for user control.","Receipt and invoice scanning used OCR to extract payment information automatically, while smart auto-fill populated transfer forms from intelligent suggestions.","Every AI-assisted step kept the user in charge — information was always reviewable and editable before submission, preserving trust in a high-stakes financial context."],
+     flows:[["Send money",["Register","Verify (KYC)","Fund Wallet","Pick Recipient","Set Amount","Confirm & Track"]],["Manage money",["Dashboard","Multi-Currency Wallet","Exchange","Transaction History","Reports"]]],
+     features:[["International Transfers","Send money globally through a streamlined, guided workflow."],["Multi-Currency Wallet","Store and manage multiple currencies from a single account."],["AI Receipt Scanner","Extract payment information from receipts and invoices to cut manual entry."],["Smart Auto-Fill","Populate transfer forms with AI-powered OCR and intelligent suggestions."],["Beneficiary Management","Save recipients for faster future transfers."],["Real-Time Tracking","Monitor transfers from initiation to delivery with live status updates."]],
+     dsAssets:["Color Palette","Typography","Responsive Grid","Component Library","Icon System","Dashboard Components","Mobile Components"],
+     process:[
+       ["210","Screens designed"],["86","Design-system components"],["18","Currencies supported"],["3","Connected products"],["9","Major design iterations"],
+       ["8","Interactive prototypes"],["52","Usability fixes"],["29","Research interviews"],["6","Competitor platforms analysed"],["4","Personas developed"],
+     ],
+     results:{
+       accent:'#163300',accentActive:'#0C2200',accentDisabled:'#E3EFDC',heatRGB:'22,51,0',
+       bandKicker:'How this was measured',
+       bandText:'Figures come from the MVP launch to existing exchange customers and new digital users, plus moderated usability testing — first-90-days adoption and early validation evidence, not steady-state production analytics.',
+       band:[['1,850+','registered users'],['6,300+','transfers completed'],['27','countries']],
+       baSub:'Time and completion across core financial tasks',funnelSub:'First-90-days, from registration to repeat use',featSub:'Share of users using each feature',usageSub:'Where time in the product is spent',gaugeSub:'Post-launch survey, 5-point scale',
+       heatNote:'Relative feature activity by weekday after launch — illustrative, pending production instrumentation.',
+       heat:[['Transfers',[.9,.85,.95,.8,.9,.45,.3]],['Wallet',[.7,.7,.75,.7,.8,.4,.3]],['Exchange',[.6,.65,.7,.6,.75,.35,.25]],['Receipt scanner',[.5,.55,.5,.6,.65,.25,.15]],['Tracking',[.55,.6,.65,.6,.7,.4,.3]]],
+       kpis:[
+         {v:'96',u:'%',d:'97% in 2nd redesign',pos:1,k:'Task completion rate',w:'Nearly all participants completed international transfers without assistance.'},
+         {v:'44',u:'%',d:'vs. manual workflow',pos:1,k:'Faster transfer completion',w:'A guided digital flow nearly halved the time the old manual process required.'},
+         {v:'89',u:'%',d:'first attempt, no support',pos:1,k:'Onboarding success',w:'Most users cleared registration and verification on their first try, unaided.'},
+         {v:'+58',u:'',d:'early customer validation',k:'Net Promoter Score',w:'Strong early advocacy from customers migrating off the physical branch.'},
+       ],
+       beforeAfter:[
+         {l:'Transfer completion time',bt:'Baseline',at:'−44%',b:100,a:56,d:'−44%'},
+         {l:'Manual data entry (with AI scan)',bt:'Baseline',at:'−79%',b:100,a:21,d:'−79%'},
+         {l:'Support requests · transfers',bt:'Baseline',at:'−38%',b:100,a:62,d:'−38%'},
+         {l:'Onboarding first-attempt success',bt:'Baseline',at:'89%',b:58,a:89,d:'+success'},
+         {l:'Task success (redesign 1 → 2)',bt:'67%',at:'97%',b:67,a:97,d:'+30 pts'},
+       ],
+       funnel:[['Registered',1850,100],['Verified (KYC)',1140,62],['Completed a transfer',905,49],['Repeat users',700,38]],
+       features:[['International transfers',84],['Multi-currency wallet',71],['Currency exchange',63],['Receipt scanner',49],['Beneficiaries',44]],
+       usage:[['Transfers',43,'#0E9F6E'],['Wallet',26,'#3BB88C'],['Exchange',19,'#7FD3B4'],['Tracking',12,'#C2EBDB']],
+       gauges:[['Customer satisfaction','4.8',96],['Would continue vs. branch','4.6',91]],
+       feedback:[['94%','found exchange rates and transaction fees easy to understand.'],['86%','found AI document scanning faster than entering payment details by hand.'],['91%','said they would keep using RemitLand instead of visiting a physical branch.']],
+     },
+     challenges:[["Simplifying complex financial workflows","International transfers involve regulations, verification, multiple currencies, and payment methods. Progressive disclosure, contextual guidance, and step-by-step flows revealed only what users needed at each stage."],["Building trust","Financial products succeed only when users feel secure. Transparent fee breakdowns, visible transaction status, confirmation steps, and consistent security messaging reinforced confidence throughout."],["Designing AI that adds value","AI was a productivity tool, not a replacement for control. Invoice scanning and smart form completion cut repetitive work while always letting users review and edit before submission."]],
+     learned:["Designing financial products is about much more than moving money — every interaction influences user confidence.","Returning to wireframes beats polishing visuals when the workflow itself is the problem.","Validating with usability testing and A/B iteration turned a good concept into a 97%-success experience.","This project strengthened my ability to simplify highly regulated workflows, collaborate across design and engineering, and integrate AI that solves real problems instead of adding complexity."],
+     gallery:[{img:"assets/images/remitland-gallery-1.webp",alt:"RemitLand — Online Borderless Exchange, dashboard on laptop"},{placeholder:"Drop a RemitLand shot"}]
+   }},
+];
+
+/* ---------- design enhancements + writing ---------- */
+const ENHANCEMENTS=[
+  {tag:"FinTech · Remitland",h:"Removed error-prone steps in onboarding",p:"Clarified inputs and surfaced the right information at the right moment, closing the paths that led people astray.",b:"Frequent errors",a:"−25% errors"},
+  {tag:"Workflow · Certy",h:"Cut friction from multi-step flows",p:"Mapped every hesitation point and ambiguous instruction, then simplified language and tightened hierarchy.",b:"Slow & unclear",a:"−40% time"},
+  {tag:"Healthcare · mePro",h:"Made AI output safe and clear",p:"Stress-tested AI-assisted interactions against hard scenarios and refined the patterns for reliability.",b:"Inconsistent output",a:"78% preferred"},
+];
+const ARTICLES=[
+  {cat:"Essay",t:"Evaluating AI output without breaking user trust",read:"6 min read",bstyle:"font-weight: 400"},
+  {cat:"Notes",t:"A checklist for heuristic evaluation at scale",read:"4 min read"},
+  {cat:"Essay",t:"Why edge cases are where product quality lives",read:"5 min read",bstyle:'font-family: "Google Sans Flex"'},
+];
+
+/* ---------- render ---------- */
+document.getElementById('ab-dl').innerHTML=icon('Download',18);
+
+document.getElementById('mstrip').innerHTML=HERO_METRICS.map(m=>`<div class="mstat"><div class="mv" data-count="${m.mv}">${m.mv}</div><div class="ml">${m.ml}</div></div>`).join('');
+
+const grid=document.getElementById('grid');
+PROJECTS.forEach((p,i)=>{
+  const cover=p.kind==='img'?`background-image:url(${p.src})`:`background:${p.tone}`;
+  const b=document.createElement('button');b.className='tile '+p.kind;b.setAttribute('style',cover);
+  b.innerHTML=`
+    ${p.kind==='tone'?`<span class="ghost">${p.name[0]}</span>`:''}
+    <div class="scrim"></div>
+    <div class="tmeta">
+      <div><div class="tname">${p.name}</div><div class="ttag">${p.tag} · ${p.year}</div></div>
+      <span class="tarr">${icon('ArrowRightCircle',18)}</span>
+    </div>`;
+  b.addEventListener('click',()=>openLightbox(p));
+  grid.appendChild(b);
+});
+
+document.getElementById('abouttext').innerHTML=ABOUT.map(par=>{
+  let html='';par.forEach((seg,idx)=>{html+= idx%2===1?`<b>${seg}</b>`:seg;});return `<p>${html}</p>`;
+}).join('');
+
+document.getElementById('strengths').innerHTML=STRENGTHS.map(s=>`
+  <div class="strength"><div class="si">${icon(s.ic,20)}</div><h4>${s.h}</h4><p>${s.p}</p></div>`).join('');
+
+document.getElementById('tools').innerHTML=TOOLS.map(t=>`<span class="chip">${t}</span>`).join('');
+
+document.getElementById('timeline').innerHTML=EXPERIENCE.map(e=>`
+  <div class="tl"><div class="yr">${e.yr}</div><div><div class="role">${e.role}</div><div class="co">${e.co}</div></div><div class="place">${e.place}</div></div>`).join('');
+
+function flowSteps(arr){return `<div class="d-flow">`+arr.map((s,i)=>`${i?'<span class="d-arrow">'+icon('ArrowRightCircle',16)+'</span>':''}<span class="d-step"><span class="n">${String(i+1).padStart(2,'0')}</span>${s}</span>`).join('')+`</div>`;}
+function dlist(arr){return `<ul class="d-list">`+arr.map(x=>`<li>${x}</li>`).join('')+`</ul>`;}
+function msDesignSystem(){
+  const grads=[
+    ['Sunrise Flame','linear-gradient(135deg,#FF8A4C,#FF3D71)'],
+    ['Arctic Flow','linear-gradient(135deg,#1382F3,#46D6F2)'],
+    ['Emerald Bloom','linear-gradient(135deg,#12B886,#74E0A8)'],
+    ['Violet Surge','linear-gradient(135deg,#7C5CFC,#C46BFF)'],
+    ['Crimson Burst','linear-gradient(135deg,#FF4D6D,#C9184A)'],
+    ['Golden Dawn','linear-gradient(135deg,#FFC24B,#FF7A45)'],
+  ];
+  const ramp=['#1A1D21','#4A4F57','#7B7D80','#A8AAAD','#D7D9DE','#EEF1F4'];
+  const av=(initials,bg)=>`<span class="ms-av" style="background:${bg}">${initials}</span>`;
+  return `
+<div class="ms">
+  <div class="ms-grid2">
+    <div class="ms-card">
+      <span class="ms-cap">Brand color</span>
+      <div class="ms-primary"><div class="h">Primary</div><div class="x">#1382F3</div></div>
+      <div class="ms-ramp">${ramp.map(c=>`<span style="background:${c}"></span>`).join('')}</div>
+    </div>
+    <div class="ms-card">
+      <span class="ms-cap">Signature gradients</span>
+      <div class="ms-grads">${grads.map(g=>`<div class="ms-grad" style="background:${g[1]}"><span>${g[0]}</span></div>`).join('')}</div>
+    </div>
+  </div>
+
+  <div class="ms-card">
+    <span class="ms-cap">Typography \u2014 Fustat</span>
+    <div class="ms-type">
+      <div class="t"><span class="tk">Display \u00b7 41</span><span class="tv" style="font-size:38px;font-weight:600">Care, in clear words</span></div>
+      <div class="t"><span class="tk">H2 \u00b7 32</span><span class="tv" style="font-size:30px;font-weight:500">A calmer way to talk</span></div>
+      <div class="t"><span class="tk">Body \u00b7 20</span><span class="tv" style="font-size:19px;font-weight:400">AI that helps you say what matters before the session.</span></div>
+      <div class="t"><span class="tk">Caption \u00b7 14</span><span class="tv" style="font-size:14px;font-weight:500;color:var(--c-subtext)">Reviewed and editable by your therapist</span></div>
+    </div>
+  </div>
+
+  <div class="ms-grid2">
+    <div class="ms-card">
+      <span class="ms-cap">Buttons</span>
+      <div class="ms-controls">
+        <button class="mb mb-primary">Book a session</button>
+        <button class="mb mb-secondary">Save draft</button>
+        <button class="mb mb-outline">Edit</button>
+        <button class="mib">${icon('PlusCircle',20)}</button>
+      </div>
+    </div>
+    <div class="ms-card">
+      <span class="ms-cap">Chips</span>
+      <div class="ms-controls">
+        <span class="mchip sel">${icon('CheckCircle',14)}Anxiety</span>
+        <span class="mchip">Sleep</span>
+        <span class="mchip">Stress</span>
+        <span class="mchip out"><span class="d"></span>Mood</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ms-grid2">
+    <div class="ms-card">
+      <span class="ms-cap">Input</span>
+      <div class="minput">
+        <span class="l">Email</span>
+        <div class="box">${icon('Mail',18)}<input value="[email protected]" readonly /></div>
+        <span class="s">We'll only use this for session reminders.</span>
+      </div>
+    </div>
+    <div class="ms-card">
+      <span class="ms-cap">Search</span>
+      <div class="msearch">
+        <div class="box">${icon('Search',18)}<input value="Search for clients" readonly /></div>
+        <div class="result">${av('AD','#1382F3')}<span class="nm">Alex Davis</span><span class="role">Client</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ms-grid2">
+    <div class="ms-card">
+      <span class="ms-cap">Pagination</span>
+      <div class="mpag"><b>${icon('NavArrowUp',16)}</b><b class="on">1</b><b>2</b><b>3</b><b>\u2026</b><b>5</b><b>${icon('NavArrowDown',16)}</b></div>
+    </div>
+    <div class="ms-card">
+      <span class="ms-cap">Attention box</span>
+      <div class="mattn">
+        <div class="top"><span class="ic">${icon('Cube',18)}</span><span class="ti">AI Assistant summary</span></div>
+        <p>The most recent interaction between the AI Assistant and the client \u2014 updates, context, and self-reported information gathered before human review.</p>
+        <div class="acts"><button class="mb mb-primary" style="padding:9px 16px;font-size:13px">Review</button><button class="mb mb-ghost" style="padding:9px 16px;font-size:13px">Dismiss</button></div>
+      </div>
+    </div>
+  </div>
+</div>`;
+}
+function certyDesignSystem(){
+  const ramp=['#15131C','#3F3A4D','#6E6880','#9A95A8','#D4CFE0','#EFEBF8'];
+  const status=[['Incomplete','#FF7A1A','#FFE9D6'],['Complete','#1F9D55','#D8F3E3'],['Draft','#C99A00','#FBF0CC']];
+  const cert=(addr,id,name,date,time,st)=>`<div class="cz-cert"><div class="cz-cic">${icon('Page',18)}</div><div class="cz-cmain"><div class="cz-caddr">${addr}</div><div class="cz-cid">${id}</div><div class="cz-cmeta">${name} · ${date}${time?' · '+time:''}</div></div><span class="cz-tag" style="color:${st[1]};background:${st[2]}">${st[0]}</span></div>`;
+  return `
+<div class="ms cs-certy">
+  <div class="ms-grid2">
+    <div class="ms-card">
+      <span class="ms-cap">Brand color</span>
+      <div class="ms-primary"><div class="h">Primary</div><div class="x">#5835BE</div></div>
+      <div class="ms-ramp">${ramp.map(c=>`<span style="background:${c}"></span>`).join('')}</div>
+    </div>
+    <div class="ms-card">
+      <span class="ms-cap">Status colours</span>
+      <div class="cz-status">${status.map(s=>`<div class="cz-srow"><span class="cz-tag" style="color:${s[1]};background:${s[2]}">${s[0]}</span><span class="cz-sx">${s[0]==='Incomplete'?'Fields still required':s[0]==='Complete'?'Issued & compliant':'Saved, not submitted'}</span></div>`).join('')}</div>
+    </div>
+  </div>
+
+  <div class="ms-card">
+    <span class="ms-cap">Typography — Inter</span>
+    <div class="ms-type">
+      <div class="t"><span class="tk">Display · 32</span><span class="tv" style="font-size:30px;font-weight:600">Certificates, sorted on site</span></div>
+      <div class="t"><span class="tk">Heading · 22</span><span class="tv" style="font-size:21px;font-weight:600">Electrical Installation Certificate</span></div>
+      <div class="t"><span class="tk">Body · 16</span><span class="tv" style="font-size:16px;font-weight:400">Work through each step — Certy validates as you go.</span></div>
+      <div class="t"><span class="tk">Caption · 13</span><span class="tv" style="font-size:13px;font-weight:500;color:var(--c-subtext)">EIC-20250319-001 · Edinburgh</span></div>
+    </div>
+  </div>
+
+  <div class="ms-card">
+    <span class="ms-cap">Certificate cards</span>
+    <div class="cz-certs">
+      ${cert('90 Maple Lane, Edinburgh','EIC-20250319-001','James Wilson','19/03/2025','2:30 PM',status[1])}
+      ${cert('14 Rowan Court, Glasgow','EICR-20250318-004','Sarah Khan','18/03/2025','',status[0])}
+      ${cert('3 Birch Street, Dundee','MWC-20250317-009','Tom Reilly','17/03/2025','',status[2])}
+    </div>
+  </div>
+
+  <div class="ms-grid2">
+    <div class="ms-card">
+      <span class="ms-cap">Buttons</span>
+      <div class="ms-controls">
+        <button class="mb mb-primary">New certificate</button>
+        <button class="mb mb-secondary">Save draft</button>
+        <button class="mb mb-outline">Preview</button>
+        <button class="mib">${icon('PlusCircle',20)}</button>
+      </div>
+    </div>
+    <div class="ms-card">
+      <span class="ms-cap">Status tags</span>
+      <div class="ms-controls">${status.map(s=>`<span class="cz-tag" style="color:${s[1]};background:${s[2]}">${s[0]}</span>`).join('')}</div>
+    </div>
+  </div>
+
+  <div class="ms-grid2">
+    <div class="ms-card">
+      <span class="ms-cap">Input</span>
+      <div class="minput">
+        <span class="l">Installation address</span>
+        <div class="box">${icon('Map',18)}<input value="90 Maple Lane, Edinburgh" readonly /></div>
+        <span class="s">Pulled from the job — edit if needed.</span>
+      </div>
+    </div>
+    <div class="ms-card">
+      <span class="ms-cap">Dropdown</span>
+      <div class="minput">
+        <span class="l">Certificate type</span>
+        <div class="box cz-dd"><span>Electrical Installation Certificate</span>${icon('NavArrowDown',18)}</div>
+        <span class="s">EIC · EICR · Minor Works</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ms-card">
+    <span class="ms-cap">List items</span>
+    <div class="cz-list">
+      <div class="cz-li"><span class="cz-lic">${icon('CheckCircle',18)}</span><span class="cz-lt"><b>Circuit details</b><span>32 of 32 fields complete</span></span><span class="cz-tag" style="color:#1F9D55;background:#D8F3E3">Complete</span></div>
+      <div class="cz-li"><span class="cz-lic">${icon('Clock',18)}</span><span class="cz-lt"><b>Test results</b><span>8 of 14 fields complete</span></span><span class="cz-tag" style="color:#FF7A1A;background:#FFE9D6">Incomplete</span></div>
+      <div class="cz-li"><span class="cz-lic">${icon('Page',18)}</span><span class="cz-lt"><b>Declaration</b><span>Awaiting signature</span></span><span class="cz-tag" style="color:#C99A00;background:#FBF0CC">Draft</span></div>
+    </div>
+  </div>
+</div>`;
+}
+function remitDesignSystem(){
+  const ramp=['#163300','#00382B','#004C3A','#4B4C4C','#A5A7A6','#DEE0E0'];
+  const swatches=[['Primary','#163300','#fff'],['Accent','#FFB82E','#163300'],['Positive','#65D769','#00261D'],['Surface','#FBF2E1','#754D00'],['Error','#FF4758','#fff'],['Ink','#141414','#fff']];
+  const wallets=[['US Dollar','$','12,480.50','USD'],['Malaysian Ringgit','RM','48,300.00','MYR'],['UAE Dirham','AED','20,000.00','AED']];
+  const txns=[
+    ['Currency Exchange','AED 20,000.00','USD → AED conversion','Yesterday 12:00 PM','Pending','#754D00','#FBEBCD'],
+    ['Money Transfer','AED 8,500.00','To Ahmed Hassan · ENBD','Today 9:14 AM','Completed','#005B13','#DFF5E0'],
+  ];
+  return `
+<div class="ms rm">
+  <div class="ms-grid2">
+    <div class="ms-card">
+      <span class="ms-cap">Brand color</span>
+      <div class="ms-primary"><div class="h">Primary</div><div class="x">#163300</div></div>
+      <div class="ms-ramp">${ramp.map(c=>`<span style="background:${c}"></span>`).join('')}</div>
+    </div>
+    <div class="ms-card">
+      <span class="ms-cap">Colour styles</span>
+      <div class="rm-swatches">${swatches.map(s=>`<div class="rm-sw" style="background:${s[1]};color:${s[2]}"><span>${s[0]}</span><b>${s[1]}</b></div>`).join('')}</div>
+    </div>
+  </div>
+
+  <div class="ms-card">
+    <span class="ms-cap">Typography — Poppins</span>
+    <div class="ms-type">
+      <div class="t"><span class="tk">Display · 48</span><span class="tv rm-ax" style="font-size:40px;font-weight:700">Send money home</span></div>
+      <div class="t"><span class="tk">Heading · 30</span><span class="tv rm-ax" style="font-size:30px;font-weight:600">Convert &amp; transfer</span></div>
+      <div class="t"><span class="tk">Body · 18</span><span class="tv rm-sf" style="font-size:18px;font-weight:400">Live rates and fees stay visible at every step.</span></div>
+      <div class="t"><span class="tk">Caption · 13</span><span class="tv rm-sf" style="font-size:13px;font-weight:500;color:var(--c-subtext)">USD/MYR · updated just now</span></div>
+    </div>
+  </div>
+
+  <div class="ms-card">
+    <span class="ms-cap">Accounts — multi-currency</span>
+    <div class="rm-wallets">${wallets.map(w=>`<div class="rm-wallet"><div class="rm-wtop"><span class="rm-wsym">${w[3]}</span><span class="rm-wcur">${w[1]}</span></div><div class="rm-wbal">${w[1]} ${w[2]}</div><div class="rm-wname">${w[0]}</div></div>`).join('')}</div>
+  </div>
+
+  <div class="ms-grid2">
+    <div class="ms-card">
+      <span class="ms-cap">Conversion panel</span>
+      <div class="rm-fx">
+        <div class="rm-fxtabs"><span class="on">Buy USD</span><span>Sell USD</span></div>
+        <div class="rm-fxrate"><span class="p">USD/MYR</span><span class="r">4.08 <small>MYR</small></span></div>
+        <div class="rm-fxfield"><span class="l">USD amount to receive</span><span class="v">1,000.00 <b>USD</b></span></div>
+        <div class="rm-fxfield"><span class="l">MYR amount to pay</span><span class="v">4,080.00 <b>MYR</b></span></div>
+        <div class="rm-fxmeta"><span>Fee</span><b>0 USD</b></div>
+        <div class="rm-fxmeta"><span>Total balance</span><b>20,000.00 MYR</b></div>
+        <button class="mb mb-primary" style="width:100%;justify-content:center">Convert MYR to USD</button>
+        <a class="rm-wa">${icon('Send',15)} Contact WhatsApp</a>
+      </div>
+    </div>
+    <div class="ms-card">
+      <span class="ms-cap">Mobile transaction cards</span>
+      <div class="rm-txns">${txns.map(t=>`<div class="rm-txn"><div class="rm-tic">${icon('OpenNewWindow',18)}</div><div class="rm-tmain"><div class="rm-trow"><b>${t[0]}</b><span class="rm-tamt">${t[1]}</span></div><div class="rm-tdesc">${t[2]}</div><div class="rm-trow"><span class="rm-ttime">${t[3]}</span><span class="rm-tstatus" style="color:${t[5]};background:${t[6]}">${t[4]}</span></div></div></div>`).join('')}</div>
+    </div>
+  </div>
+
+  <div class="ms-grid2">
+    <div class="ms-card">
+      <span class="ms-cap">Buttons</span>
+      <div class="ms-controls">
+        <button class="mb mb-primary">Send money</button>
+        <button class="mb mb-accent">Add funds</button>
+        <button class="mb mb-outline">Exchange</button>
+        <button class="mib">${icon('PlusCircle',20)}</button>
+      </div>
+    </div>
+    <div class="ms-card">
+      <span class="ms-cap">Beneficiaries</span>
+      <div class="rm-bens">
+        <div class="rm-ben"><span class="rm-bav">MA</span><span class="rm-bt"><b>Maria Alvarez</b><span>MYR · MBB•••4821</span></span>${icon('ArrowRightCircle',16)}</div>
+        <div class="rm-ben"><span class="rm-bav">AH</span><span class="rm-bt"><b>Ahmed Hassan</b><span>AED · ENBD•••0093</span></span>${icon('ArrowRightCircle',16)}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ms-card">
+    <span class="ms-cap">AI receipt scanner</span>
+    <div class="rm-ai">
+      <div class="rm-aic">${icon('Page',20)}</div>
+      <div class="rm-ait"><b>Invoice scanned</b><p>We extracted the amount, currency, and recipient from your receipt. Review before you send.</p>
+        <div class="rm-aifields"><span>AED 20,000.00</span><span>Ahmed Hassan</span><span>Invoice #INV-2045</span></div>
+      </div>
+      <button class="mb mb-primary" style="padding:9px 16px;font-size:13px;align-self:flex-start">Review</button>
+    </div>
+  </div>
+</div>`;
+}
+const MEPRO_RZ={
+  bandKicker:'How this was measured',
+  bandText:'Figures come from a 25-clinic MVP pilot and moderated usability testing with 184 therapists and clients across the final eight weeks — early validation evidence, not steady-state production analytics.',
+  band:[['25','partner clinics'],['184','participants'],['8 wks','of testing']],
+  baSub:'Time and completion across core therapist tasks',funnelSub:'From invited clinics to 8-week retention',featSub:'Share of sessions or therapists using each feature',usageSub:'Where AI assistance is actually spent',gaugeSub:'Post-pilot survey, 5-point scale',
+  heatNote:'Relative feature activity by weekday during the pilot — illustrative, pending production instrumentation.',
+  heat:[['Documentation',[.9,.8,.95,.7,.85,.3,.2]],['Scheduling',[.6,.75,.7,.8,.65,.25,.15]],['AI pre-session chat',[.5,.6,.55,.65,.7,.5,.45]],['Progress insights',[.3,.45,.4,.5,.55,.2,.15]],['Messaging',[.4,.5,.6,.55,.5,.35,.3]]],
+  kpis:[
+    {v:'86',u:'/100',d:'+18 vs. 68 benchmark',pos:1,k:'System Usability Scale',w:'Comfortably above the 68 industry baseline — therapists found the interface trustworthy under real session pressure.'},
+    {v:'94',u:'%',d:'92–96% across core tasks',k:'Task success rate',w:'Core flows finish without help — essential when clinicians are mid-session and can\'t stop to troubleshoot.'},
+    {v:'+54',u:'',d:'+48 to +62 range',k:'Net Promoter Score',w:'Participants would actively recommend mePro to peers, pointing to healthy word-of-mouth among clinics.'},
+    {v:'87',u:'%',d:'86–89% of testers',k:'Preferred mePro after testing',w:'Given hands-on time, most participants chose mePro over the tool they currently rely on.'},
+  ],
+  beforeAfter:[
+    {l:'Therapist onboarding',bt:'40 min',at:'16 min',b:100,a:40,d:'−60% time'},
+    {l:'Session documentation',bt:'Baseline',at:'−68%',b:100,a:32,d:'−68% time'},
+    {l:'Time to schedule a session',bt:'Baseline',at:'−59%',b:100,a:41,d:'−59% time'},
+    {l:'Appointment completion',bt:'Baseline',at:'+21%',b:66,a:80,d:'+21%'},
+    {l:'Client engagement',bt:'Baseline',at:'+37%',b:60,a:82,d:'+37%'},
+  ],
+  funnel:[['Clinics invited',25,100],['Onboarded',23,92],['Active in week 1',21,84],['Retained at 8 weeks',17,68]],
+  features:[['AI documentation',81],['Pre-session AI chat',76],['Smart scheduling',68],['Progress insights',59],['Hybrid sessions',47]],
+  usage:[['Documentation',38,'#0055FF'],['Pre-session prep',27,'#3377FF'],['Session summaries',21,'#7AA5FF'],['Pattern insights',14,'#AFC6FF']],
+  gauges:[['Therapist satisfaction','4.6',92],['Client satisfaction','4.7',94]],
+  feedback:[['90%','of therapists said AI noticeably reduced repetitive administrative work.'],['85%','of clients felt more comfortable sharing sensitive information after an AI pre-session chat.'],['72%','of session notes now start from an AI draft rather than a blank page.']],
+};
+const MEPRO_PROCESS=[
+  ['142','Screens designed'],['68','Design-system components'],['17','End-to-end user flows'],['9','Major design iterations'],['31','Design reviews held'],
+  ['6','Interactive prototypes'],['47','Accessibility fixes'],['23','Research interviews'],['7','Competitor platforms analysed'],['4','Personas developed'],
+];
+function renderProcessStrip(items){return `<div class="d-sec"><span class="d-sub">By the numbers</span>
+  <div class="rz-pstrip">${items.map(s=>`<div class="rz-ptile"><div class="v">${s[0]}</div><div class="l">${s[1]}</div></div>`).join('')}</div></div>`;}
+function renderResults(R){
+  let acc=0;const donut=R.usage.map(u=>{const s=acc;acc+=u[1];return `${u[2]} ${s}% ${acc}%`;}).join(',');
+  const days=R.heatDays||['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const hrgb=R.heatRGB||'0,85,255';
+  const sv=`--c-accent:${R.accent||'#0055FF'};--c-accent-active:${R.accentActive||'#003BB2'};--c-accent-disabled:${R.accentDisabled||'#DBE7FF'}`;
+  return `
+<div class="rz" style="${sv}">
+  <div class="rz-band">
+    <div><div class="rz-bk">${R.bandKicker||'How this was measured'}</div><p>${R.bandText}</p></div>
+    <div class="rz-bstats">${R.band.map(b=>`<div><b>${b[0]}</b><span>${b[1]}</span></div>`).join('')}</div>
+  </div>
+  <div class="rz-kpis">${R.kpis.map(k=>`<div class="rz-kpi"><div class="top"><span class="v">${k.v}</span><span class="u">${k.u}</span></div><span class="rz-chip ${k.pos?'pos':''}">${k.d}</span><div class="k">${k.k}</div><div class="w">${k.w}</div></div>`).join('')}</div>
+  <div class="rz-grid">
+    <div class="rz-card"><div class="rz-h"><h5>Before vs. after</h5><span>${R.baSub||''}</span></div>
+      <div class="rz-ba">${R.beforeAfter.map(r=>`<div class="rz-row"><div class="rl"><span class="n">${r.l}</span><span class="d">${r.d}</span></div><div class="rz-bars"><div class="rz-bar"><span class="rz-fill mut" style="width:${r.b}%"></span></div><div class="rz-bar"><span class="rz-fill" style="width:${r.a}%"></span></div></div><div class="rz-bvals"><span>Before · ${r.bt}</span><span>After · ${r.at}</span></div></div>`).join('')}</div></div>
+    <div class="rz-card"><div class="rz-h"><h5>Adoption funnel</h5><span>${R.funnelSub||''}</span></div>
+      <div class="rz-funnel">${R.funnel.map(f=>`<div class="rz-fstep"><span class="fbar" style="width:${f[2]}%">${f[1]}</span><span class="fl">${f[0]}</span></div>`).join('')}</div></div>
+    <div class="rz-card"><div class="rz-h"><h5>Feature adoption</h5><span>${R.featSub||''}</span></div>
+      <div class="rz-feat">${R.features.map(f=>`<div class="rz-fr"><div class="frl"><span>${f[0]}</span><b>${f[1]}%</b></div><div class="rz-bar"><span class="rz-fill" style="width:${f[1]}%"></span></div></div>`).join('')}</div></div>
+    <div class="rz-card"><div class="rz-h"><h5>AI feature usage</h5><span>${R.usageSub||''}</span></div>
+      <div class="rz-donut-wrap"><div class="rz-donut" style="background:conic-gradient(${donut})"></div><div class="rz-legend">${R.usage.map(u=>`<div><span class="sw" style="background:${u[2]}"></span>${u[0]}<b>${u[1]}%</b></div>`).join('')}</div></div></div>
+    <div class="rz-card"><div class="rz-h"><h5>Satisfaction</h5><span>${R.gaugeSub||''}</span></div>
+      <div class="rz-gauges">${R.gauges.map(g=>`<div class="rz-gauge"><div class="rz-ring" style="background:conic-gradient(var(--c-accent) ${g[2]}%,var(--c-on-background) 0)"><span class="gv">${g[1]}</span></div><div class="gl">${g[0]}</div></div>`).join('')}</div></div>
+    <div class="rz-card"><div class="rz-h"><h5>What participants reported</h5><span>${R.fbSub||'Self-reported, post-test surveys'}</span></div>
+      <div class="rz-fb">${R.feedback.map(f=>`<div class="rz-fbc"><span class="p">${f[0]}</span><span class="t">${f[1]}</span></div>`).join('')}</div></div>
+    <div class="rz-card wide"><div class="rz-h"><h5>Engagement heatmap</h5><span>${R.heatNote||''}</span></div>
+      <div class="rz-heat">${R.heat.map(h=>`<div class="rz-heatrow"><span class="hl">${h[0]}</span>${h[1].map(v=>`<span class="rz-cell" style="background:rgba(${hrgb},${(0.08+v*0.82).toFixed(2)})"></span>`).join('')}</div>`).join('')}<div class="rz-heataxis"><span></span>${days.map(dd=>`<span>${dd}</span>`).join('')}</div></div></div>
+  </div>
+</div>`;}
+function renderDetail(c){const d=c.detail;
+  const para=arr=>arr.map(p=>`<p class="d-p">${p}</p>`).join('');
+  const badges=arr=>`<div class="casetags">${arr.map(x=>`<span class="psg-badge psg-badge--outline psg-badge--square">${x}</span>`).join('')}</div>`;
+  const flowG=(label,arr)=>`<div class="d-flowgroup"><span class="d-flowlabel">${label}</span>${flowSteps(arr)}</div>`;
+  const flowsHtml = d.flows ? d.flows.map(f=>flowG(f[0],f[1])).join('') : (flowG('Therapist',d.flowTherapist)+flowG('Client',d.flowClient));
+  const dsSection = d.ds==='certy' ? certyDesignSystem() : d.ds==='remit' ? remitDesignSystem() : msDesignSystem();
+  return `
+<div class="d-wrap">
+  <p class="d-lede">${d.tagline}</p>
+  <div class="d-meta">${d.meta.map(m=>`<div class="m"><div class="ml">${m[0]}</div><div class="mv">${m[1]}</div></div>`).join('')}</div>
+  <div class="d-sec"><span class="d-sub">Responsibilities</span>${badges(d.responsibilities)}</div>
+  <div class="d-sec"><span class="d-sub">Project overview</span><h3 class="d-h">${d.overviewHead||'Project overview'}</h3>${para(d.overview)}</div>
+  <div class="d-sec"><span class="d-sub">The challenge</span>${para(d.challenge)}</div>
+  <div class="d-sec"><span class="d-sub">Goals</span>${dlist(d.goals)}</div>
+  <div class="d-sec"><span class="d-sub">Competitive research</span><p class="d-p">${d.competitorsIntro}</p>
+    <div class="d-grid2"><div><h4 class="d-min">Competitors studied</h4>${dlist(d.competitors)}</div>
+      <div><h4 class="d-min">Research focus</h4>${dlist(d.researchFocus)}</div></div>
+    <p class="d-note">${d.competitorsNote}</p></div>
+  <div class="d-sec"><span class="d-sub">Design process</span>
+    <div class="d-phases">${d.phases.map(p=>`<div class="d-phase"><span class="d-phn">${p.ph}</span><h4>${p.title}</h4><p class="d-p">${p.body}</p>${p.list?dlist(p.list):''}${p.note?`<p class="d-note">${p.note}</p>`:''}</div>${p.shot?`<figure class="d-phaseshot"><img src="${p.shot}" alt="${p.shotAlt||''}" loading="lazy" />${p.shotCap?`<figcaption>${p.shotCap}</figcaption>`:''}</figure>`:''}`).join('')}</div></div>
+  ${renderProcessStrip(d.process||MEPRO_PROCESS)}
+  ${d.aiCollab?`<div class="d-sec"><span class="d-sub">${d.aiCollabHead||'AI collaboration'}</span>${para(d.aiCollab)}</div>`:''}
+  <div class="d-sec"><span class="d-sub">User flow</span>
+    ${flowsHtml}</div>
+  <div class="d-sec"><span class="d-sub">Key features</span>
+    <div class="d-cards">${d.features.map(f=>`<div class="d-card"><h5>${f[0]}</h5><p>${f[1]}</p></div>`).join('')}</div></div>
+  <div class="d-sec"><span class="d-sub">Design system</span><p class="d-p">${d.dsBlurb}</p>
+    ${dsSection}</div>
+  <div class="d-sec"><span class="d-sub">Results &amp; impact</span>${renderResults(d.results||MEPRO_RZ)}</div>
+  <div class="d-sec"><span class="d-sub">Challenges</span>
+    <div class="d-cards">${d.challenges.map(ch=>`<div class="d-card"><h5>${ch[0]}</h5><p>${ch[1]}</p></div>`).join('')}</div></div>
+  <div class="d-sec"><span class="d-sub">What I learned</span>${dlist(d.learned)}</div>
+  ${d.gallery?`<div class="d-sec"><div class="d-gallery">${d.gallery.map((g,i)=>g.img?`<figure class="d-gcell"><img src="${g.img}" alt="${g.alt||''}" loading="lazy" /></figure>`:`<div class="d-gcell d-gslot"><image-slot id="${c.title.toLowerCase()}-gal-${i}" placeholder="${g.placeholder||'Drop a shot'}"></image-slot></div>`).join('')}</div></div>`:''}
+</div>`;}
+
+/* ---------- case studies: index + dedicated pages ---------- */
+const caseSummary=c=>c.detail?c.detail.tagline:c.problem;
+function renderCaseHero(c,i){
+  return `<div class="wrap pad" style="padding-top:8px">
+    <div class="ch-hero reveal">
+      <div class="ch-shot"><image-slot id="casehero-${i}" src="${c.cover}" fit="cover" placeholder="Drop a hero shot — ${c.title}"></image-slot></div>
+      <div class="ch-scrim"></div>
+      <div class="ch-top">
+        <button class="ch-back" data-back>${icon('ArrowLeftCircle',18)} All case studies</button>
+        <span class="ch-eyebrow">Case study · ${c.n}</span>
+      </div>
+      <div class="ch-panel">
+        <h1>${c.title}</h1>
+        <div class="ch-type">${c.type}</div>
+        <div class="ch-meta">
+          <div class="ch-metric"><b>${c.metric}</b><span>${c.mlabel}</span></div>
+          <div class="ch-htags">${c.tags.map(t=>`<span class="ch-htag">${t[0]}</span>`).join('')}</div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+function renderCaseBody(c,i){
+  const inner=c.detail?renderDetail(c):`<div class="cd-simple">
+      <div>
+        <div class="csb"><span class="spec">Problem</span><p>${c.problem}</p></div>
+        <div class="csb"><span class="spec">Approach</span><p>${c.approach}</p></div>
+        <div class="csb"><span class="spec">Outcome</span><p>${c.outcome}</p></div>
+      </div>
+      <div class="cd-side">
+        <div class="cd-shot2"><image-slot id="caseside-${i}" placeholder="Drop a screen"></image-slot></div>
+        <div class="cd-bigm"><b>${c.metric}</b><span>${c.mlabel}</span></div>
+      </div>
+    </div>`;
+  return `<div class="wrap pad cd-body reveal">${inner}${caseNav(i)}</div>`;
+}
+function caseNav(i){
+  const prev=CASES[i-1],next=CASES[i+1];
+  return `<div class="cd-nav">
+    ${prev?`<div class="cd-navcard" data-open="${i-1}"><span class="nl">← Previous</span><span class="nt">${prev.title}</span></div>`:`<div class="cd-navcard disabled"><span class="nl">← Previous</span><span class="nt">—</span></div>`}
+    ${next?`<div class="cd-navcard next" data-open="${i+1}"><span class="nl">Next →</span><span class="nt">${next.title}</span></div>`:`<div class="cd-navcard next disabled"><span class="nl">Next →</span><span class="nt">—</span></div>`}
+  </div>`;
+}
+function openCase(i,push){
+  const c=CASES[i];if(!c)return;
+  currentCase=i;
+  document.getElementById('casedetail-inner').innerHTML=renderCaseHero(c,i)+renderCaseBody(c,i);
+  document.querySelectorAll('#casedetail-inner [data-back]').forEach(b=>b.addEventListener('click',()=>setTab('case')));
+  document.querySelectorAll('#casedetail-inner [data-open]').forEach(b=>b.addEventListener('click',()=>openCase(+b.dataset.open)));
+  setActiveNav('case');
+  revealView(document.getElementById('view-casedetail'));
+  current='casedetail';
+  if(push!==false)history.replaceState(null,'','#case-'+i);
+}
+document.getElementById('cases').innerHTML=CASES.map((c,i)=>`
+  <button class="ci-card" data-open="${i}">
+    <div class="ci-thumb" style="background-image:url(${c.cover})">
+      <span class="ci-n glass-d">${c.n}</span>
+      <span class="ci-m glass-d"><b>${c.metric}</b><span>${c.mlabel}</span></span>
+    </div>
+    <div class="ci-body">
+      <h3>${c.title}</h3>
+      <div class="ci-type">${c.type}</div>
+      <p class="ci-blurb">${caseSummary(c)}</p>
+      <div class="ci-foot">
+        <div class="ci-tags">${c.tags.map(t=>`<span class="psg-badge psg-badge--${t[1]}${t[1]==='outline'?' psg-badge--square':''}">${t[0]}</span>`).join('')}</div>
+        <span class="ci-arr">${icon('ArrowRightCircle',18)}</span>
+      </div>
+    </div>
+  </button>`).join('');
+document.querySelectorAll('#cases .ci-card[data-open]').forEach(b=>b.addEventListener('click',()=>openCase(+b.dataset.open)));
+
+document.getElementById('crows').innerHTML=`
+  <div class="crow"><span class="ci">${icon('Mail',18)}</span><a href="mailto:kasra.nourani@gmail.com">kasra.nourani@gmail.com</a></div>
+  <div class="crow"><span class="ci">${icon('Linkedin',18)}</span><a href="https://linkedin.com" target="_blank" rel="noopener">in/kasranourani</a></div>
+  <div class="crow"><span class="ci">${icon('Map',18)}</span><span>Malta · CET (UTC+1) · Adaptable worldwide</span></div>`;
+
+/* ---------- hero sliders ---------- */
+function scard(p){
+  const cover=p.kind==='img'?`background-image:url(${p.src})`:`background:${p.tone}`;
+  return `<button class="scard" style="${cover}" data-proj="${p.name}">${p.kind==='tone'?`<span class="sg">${p.name[0]}</span>`:''}<span class="sscrim"></span><span class="sl"><span class="sn">${p.name}</span><span class="st">${p.tag}</span></span></button>`;
+}
+const _r1=PROJECTS;
+document.getElementById('rail1').innerHTML=_r1.map(scard).join('')+_r1.map(scard).join('');
+document.querySelectorAll('.scard[data-proj]').forEach(b=>b.addEventListener('click',()=>{const p=PROJECTS.find(x=>x.name===b.dataset.proj);if(p)openLightbox(p);}));
+
+/* ---------- enhancements ---------- */
+document.getElementById('enh').innerHTML=ENHANCEMENTS.map(e=>`
+  <div class="ecard">
+    <span class="psg-badge psg-badge--accent">${e.tag}</span>
+    <h4>${e.h}</h4>
+    <p>${e.p}</p>
+    <div class="bna"><span class="b">${e.b}</span><span class="arr">${icon('ArrowRightCircle',16)}</span><span class="a">${e.a}</span></div>
+  </div>`).join('');
+
+/* ---------- articles ---------- */
+document.getElementById('articles').innerHTML=ARTICLES.map(a=>`
+  <a class="arow" href="#">
+    <span class="psg-badge psg-badge--outline psg-badge--square"${a.bstyle?` style="${a.bstyle}"`:''}>${a.cat}</span>
+    <span class="at">${a.t}</span>
+    <span class="ameta">${a.read}</span>
+    <span class="aarr">${icon('ArrowRightCircle',18)}</span>
+  </a>`).join('');
+
+/* ---------- contact form ---------- */
+const formhost=document.getElementById('formhost');
+function renderForm(){
+  formhost.innerHTML=`
+  <form class="cform" id="cform" novalidate>
+    <div class="psg-field" id="f-name">
+      <label class="psg-field__label">Name</label>
+      <div class="psg-field__box"><input class="psg-field__input" id="i-name" placeholder="Your name" /></div>
+      <div class="psg-field__help" id="h-name" style="display:none">${icon('XmarkCircle',12)}<span>Please add your name</span></div>
+    </div>
+    <div class="psg-field" id="f-email">
+      <label class="psg-field__label">Email</label>
+      <div class="psg-field__box"><span class="psg-field__ico">${icon('Mail',18)}</span><input class="psg-field__input" id="i-email" placeholder="you@company.com" /></div>
+      <div class="psg-field__help" id="h-email" style="display:none">${icon('XmarkCircle',12)}<span></span></div>
+    </div>
+    <div class="psg-field">
+      <label class="psg-field__label">Message</label>
+      <div class="psg-field__box" style="height:auto;padding:12px 16px"><textarea class="psg-field__area" id="i-msg" rows="4" placeholder="A few lines about your project…" style="resize:vertical"></textarea></div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:2px">
+      <button type="submit" class="psg-btn psg-btn--accent psg-btn--lg">Send message<span class="psg-btn__ico">${icon('Send',22)}</span></button>
+      <button type="button" class="psg-btn psg-btn--ghost psg-btn--lg" data-tab="work">Cancel</button>
+    </div>
+  </form>`;
+  document.getElementById('cform').addEventListener('submit',onSubmit);
+}
+function setErr(field,help,on,msg){
+  document.getElementById(field).classList.toggle('psg-field--error',on);
+  const h=document.getElementById(help);h.style.display=on?'flex':'none';
+  if(msg)h.querySelector('span').textContent=msg;
+}
+function onSubmit(e){
+  e.preventDefault();
+  const name=document.getElementById('i-name').value.trim();
+  const email=document.getElementById('i-email').value.trim();
+  const emailBad=email.length>0 && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+  setErr('f-name','h-name',!name,'Please add your name');
+  setErr('f-email','h-email',emailBad||!email, emailBad?'That email looks off':'Email is required');
+  if(!name||!email||emailBad)return;
+  const msg=(document.getElementById('i-msg').value||'').trim();
+  const subject=encodeURIComponent('Portfolio enquiry from '+name);
+  const body=encodeURIComponent(msg+'\n\n— '+name+'\n'+email);
+  window.location.href='mailto:kasra.nourani@gmail.com?subject='+subject+'&body='+body;
+  formhost.innerHTML=`<div class="csuccess">
+    <span class="ok">${icon('CheckCircle',26)}</span>
+    <h3>Opening your email…</h3>
+    <p>Thanks, ${name.split(' ')[0]||'there'} — your message is ready to send in your mail app. I'll reply within a day or two.</p>
+    <button class="psg-btn psg-btn--outline psg-btn--md" id="again">Send another</button></div>`;
+  document.getElementById('again').addEventListener('click',renderForm);
+}
+renderForm();
+
+/* ---------- lightbox ---------- */
+const lb=document.getElementById('lb'),lbpanel=document.getElementById('lbpanel');
+function openLightbox(p){
+  const cover=p.kind==='img'?`background-image:url(${p.src})`:`background:${p.tone}`;
+  const caseIdx=CASES.findIndex(x=>x.title.toLowerCase()===p.name.toLowerCase());
+  lbpanel.innerHTML=`
+    <div class="cover" style="${cover}"></div>
+    <div class="lbbody">
+      <div class="lbtop"><h3>${p.name}</h3>
+        <button class="psg-iconbtn psg-iconbtn--secondary psg-iconbtn--md" aria-label="Close" id="lbclose">${icon('XmarkCircle',18)}</button></div>
+      <div class="lbbadges"><span class="psg-badge psg-badge--accent">${p.tag}</span><span class="psg-badge psg-badge--outline psg-badge--square">${p.year}</span><span class="lbmetric">${p.metric} ${p.ml}</span></div>
+      <p class="lbblurb">${p.blurb}</p>
+      <div class="lbact">
+        <button class="psg-btn psg-btn--primary psg-btn--lg" id="lbview"><span class="psg-btn__ico">${icon('OpenNewWindow',22)}</span>${caseIdx>=0?'View case study':'All case studies'}</button>
+        ${caseIdx>=0?`<button class="psg-btn psg-btn--outline psg-btn--lg" id="lbcase">All case studies</button>`:''}
+      </div>
+    </div>`;
+  lb.classList.add('open');
+  document.getElementById('lbclose').addEventListener('click',closeLightbox);
+  document.getElementById('lbview').addEventListener('click',()=>{closeLightbox();if(caseIdx>=0)openCase(caseIdx);else setTab('case');});
+  const lbc=document.getElementById('lbcase');if(lbc)lbc.addEventListener('click',()=>{closeLightbox();setTab('case');});
+}
+function closeLightbox(){lb.classList.remove('open');}
+lb.addEventListener('click',e=>{if(e.target===lb)closeLightbox();});
+window.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+
+/* ---------- tab routing ---------- */
+const TABS=['work','about','case','contact'];
+const views={work:'view-work',about:'view-about',case:'view-case',contact:'view-contact'};
+const links=[...document.querySelectorAll('.navlink')];
+const underline=document.getElementById('navunderline');
+let current=null,currentCase=null;
+
+function moveUnderline(tab){
+  const link=links.find(l=>l.dataset.tab===tab);
+  if(!link){underline.style.opacity=0;return;}
+  underline.style.opacity=1;
+  underline.style.width=link.offsetWidth+'px';
+  underline.style.transform=`translateX(${link.offsetLeft}px)`;
+}
+function setActiveNav(tab){links.forEach(l=>l.classList.toggle('active',l.dataset.tab===tab));moveUnderline(tab);}
+function playReveal(v){v.classList.add('anim');clearTimeout(v._t);v._t=setTimeout(()=>v.classList.remove('anim'),900);}
+function runCounters(scope){
+  scope.querySelectorAll('[data-count]').forEach(el=>{
+    const m=el.dataset.count.match(/([+\-~]?)(\d+)(.*)/);if(!m)return;
+    const pre=m[1],num=parseInt(m[2],10),suf=m[3];const t0=performance.now(),dur=850;
+    function step(t){const k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=pre+Math.round(num*e)+suf;if(k<1)requestAnimationFrame(step);}
+    requestAnimationFrame(step);
+  });
+}
+function revealView(toEl){
+  const from=document.querySelector('.view.active');
+  if(from===toEl){window.scrollTo({top:0,behavior:'auto'});playReveal(toEl);runCounters(toEl);return;}
+  const show=()=>{document.querySelectorAll('.view').forEach(v=>v.classList.remove('active','leaving'));toEl.classList.add('active');window.scrollTo({top:0,behavior:'auto'});playReveal(toEl);runCounters(toEl);};
+  if(from){from.classList.add('leaving');setTimeout(()=>{from.classList.remove('leaving');show();},170);}else show();
+}
+function setTab(tab){
+  if(!TABS.includes(tab))return;
+  const toEl=document.getElementById(views[tab]);
+  if(current===tab && document.querySelector('.view.active')===toEl)return;
+  current=tab;currentCase=null;
+  setActiveNav(tab);
+  revealView(toEl);
+  try{localStorage.setItem('kn_tab2',tab);}catch(e){}
+  history.replaceState(null,'','#'+tab);
+}
+document.querySelectorAll('[data-tab]').forEach(el=>el.addEventListener('click',()=>setTab(el.dataset.tab)));
+document.querySelectorAll('[data-go]').forEach(el=>el.addEventListener('click',()=>setTab('work')));
+
+/* ---------- init ---------- */
+let initTab=(location.hash||'').replace('#','');
+let initCase=null;
+const _cm=initTab.match(/^case-(\d+)$/);
+if(_cm){initCase=+_cm[1];initTab='case';}
+if(!TABS.includes(initTab)){try{initTab=localStorage.getItem('kn_tab2')||'';}catch(e){}}
+if(!TABS.includes(initTab))initTab='work';
+(function(){
+  if(initCase!=null && CASES[initCase]){current='case';openCase(initCase,false);return;}
+  current=initTab;
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  const iv=document.getElementById(views[initTab]);iv.classList.add('active');playReveal(iv);
+  setActiveNav(initTab);runCounters(iv);
+})();
+window.addEventListener('load',()=>moveUnderline(current));
+window.addEventListener('resize',()=>moveUnderline(current));
+</script>
+</body>
+</html>
