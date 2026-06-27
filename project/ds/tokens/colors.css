@@ -1,0 +1,94 @@
+/* ============================================================
+   COLORS — Portfolio Style Guide
+   Monochrome foundation + electric-blue accent + magenta error.
+   Base palette first, then semantic aliases.
+   ============================================================ */
+:root {
+  /* ---- Base palette ---- */
+  --c-white: #FFFFFF;
+  --c-background: #FAFAFA;       /* rgb(250,250,250) — app canvas */
+  --c-on-background: #F5F5F5;    /* rgb(245,245,245) — raised surface on canvas */
+
+  --c-black: #0E0E10;            /* rgb(14,14,16)  — true black, primary fills */
+  --c-black-active: #262526;     /* rgb(38,37,38)  — pressed black / ink text */
+
+  /* Accent — electric blue */
+  --c-accent: #0055FF;           /* rgb(0,85,255) */
+  --c-accent-hover: #3377FF;     /* rgb(51,119,255) */
+  --c-accent-active: #003BB2;    /* rgb(0,59,178) */
+  --c-accent-disabled: #DBE7FF;  /* rgb(219,231,255) */
+
+  /* Ink + grayscale ramp (dark → light) */
+  --c-text: #262526;             /* rgb(38,37,38) */
+  --c-subtext: #7B7D80;          /* rgb(123,125,128) */
+  --c-darker-gray: #A8AAAD;      /* rgb(168,170,173) */
+  --c-dark-gray: #C6C8CC;        /* rgb(198,200,204) */
+  --c-gray: #D7D9DE;             /* rgb(215,217,222) */
+  --c-light-gray: #E7E9EE;       /* rgb(231,233,238) */
+  --c-lighter-gray: #EEEEEE;     /* rgb(238,238,238) */
+  --c-stroke-1: #CCCCCC;         /* rgb(204,204,204) — primary hairline */
+  --c-stroke-2: #EEEEEE;         /* rgb(238,238,238) — faint divider */
+  --c-border: var(--c-stroke-1); /* default border alias */
+
+  --c-dark3: #14141A;            /* Surface/dark3 — dark surface (value est.) */
+
+  /* Semantic status */
+  --c-error: #FF006F;            /* rgb(255,0,111) */
+  --c-error-hover: #CC0058;      /* rgb(204,0,88) */
+  --c-success: #30A629;          /* rgb(48,166,41) */
+  --c-warning: #FFBF00;          /* rgb(255,191,0) */
+
+  /* ---- Semantic aliases ---- */
+  --surface-canvas: var(--c-background);
+  --surface-raised: var(--c-white);
+  --surface-sunken: var(--c-on-background);
+
+  --text-primary: var(--c-text);
+  --text-secondary: var(--c-subtext);
+  --text-tertiary: var(--c-darker-gray);
+  --text-placeholder: var(--c-gray);
+  --text-on-dark: var(--c-white);
+  --text-link: var(--c-accent);
+
+  --border-default: var(--c-border);
+  --border-strong: var(--c-black);
+
+  --action-primary: var(--c-black);
+  --action-primary-hover: var(--c-black-active);
+  --action-accent: var(--c-accent);
+  --action-accent-hover: var(--c-accent-hover);
+  --action-accent-active: var(--c-accent-active);
+
+  --status-error: var(--c-error);
+  --status-success: var(--c-success);
+  --status-warning: var(--c-warning);
+  --divider: var(--c-stroke-2);
+}
+
+/* ---- Canonical token names (mirror the Figma style export) ----
+   Lets consumers reference the exact source token slugs. ---- */
+:root {
+  --bg-background: var(--c-background);
+  --bg-on-background: var(--c-on-background);
+  --main-black: var(--c-black);
+  --main-black-active: var(--c-black-active);
+  --main-white: var(--c-white);
+  --primary-text: var(--c-text);
+  --primary-subtext: var(--c-subtext);
+  --primary-darker-gray: var(--c-darker-gray);
+  --primary-dark-gray: var(--c-dark-gray);
+  --primary-gray: var(--c-gray);
+  --primary-light-gray: var(--c-light-gray);
+  --primary-lighter-gray: var(--c-lighter-gray);
+  --accent-accent: var(--c-accent);
+  --accent-accent-hover: var(--c-accent-hover);
+  --accent-accent-active: var(--c-accent-active);
+  --accent-accent-disabled: var(--c-accent-disabled);
+  --stroke-stroke-1: var(--c-stroke-1);
+  --stroke-stroke-2: var(--c-stroke-2);
+  --interactions-error: var(--c-error);
+  --interactions-error-hover: var(--c-error-hover);
+  --interactions-success: var(--c-success);
+  --interactions-warning: var(--c-warning);
+  --surface-dark3: var(--c-dark3);
+}
