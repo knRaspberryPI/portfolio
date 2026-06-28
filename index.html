@@ -715,6 +715,8 @@ main{flex:1}
 .ch-metric span{font-size:13px;color:rgba(255,255,255,.78)}
 .ch-htags{display:flex;gap:7px;flex-wrap:wrap}
 .ch-htag{font-family:var(--font-label);font-size:11px;color:#fff;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22)}
+.ch-sitelink{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:var(--font-ui);font-size:13px;font-weight:500;color:#fff;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);text-decoration:none;transition:background .2s ease}
+.ch-sitelink:hover{background:rgba(255,255,255,.28)}
 .cd-body{padding-top:30px;padding-bottom:30px}
 #view-casedetail .d-wrap{padding-left:0;padding-right:0}
 .cd-simple{display:grid;grid-template-columns:1fr 320px;gap:clamp(32px,5vw,64px);align-items:start}
@@ -1106,7 +1108,7 @@ const EXPERIENCE=[
   {yr:"2018 — 2021",role:"Freelance Product Designer",co:"Independent",place:"Remote"},
 ];
 const CASES=[
-  {n:"01",title:"mePro",type:"AI Mental Healthcare Platform · Web + Mobile",metric:"87%",mlabel:"preferred over competitors",tags:[["HealthTech","accent"],["AI-assisted","neutral"],["Web + Mobile","outline"]],cover:"assets/images/mepro-hero.jpg",
+  {n:"01",title:"mePro",type:"AI Mental Healthcare Platform · Web + Mobile",metric:"87%",mlabel:"preferred over competitors",tags:[["HealthTech","accent"],["AI-assisted","neutral"],["Web + Mobile","outline"]],url:"https://www.mepro.ai/",cover:"assets/images/mepro-hero.jpg",
    detail:{
      tagline:"Redefining mental healthcare through AI collaboration — an AI-assisted therapy platform for therapists and clients.",
      overviewHead:"An AI partner for therapy",
@@ -1685,6 +1687,7 @@ function renderCaseHero(c,i){
           <div class="ch-metric"><b>${c.metric}</b><span>${c.mlabel}</span></div>
           <div class="ch-htags">${c.tags.map(t=>`<span class="ch-htag">${t[0]}</span>`).join('')}</div>
         </div>
+        ${c.url?`<a class="ch-sitelink" href="${c.url}" target="_blank" rel="noopener">${icon('ArrowRightCircle',14)} Visit website</a>`:''}
       </div>
     </div>
   </div>`;
