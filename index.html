@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="ds/styles.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Fustat:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit" async defer></script>
 <style>
 /* Font tokens — Figtree is the public fallback for Google Sans Flex */
@@ -741,7 +741,6 @@ main{flex:1}
 /* ---- card hover language: drop hairline, add soft shadow ---- */
 .strength,.ecard,.d-card,.d-phase,.ms-card{transition:box-shadow .25s var(--ease-standard),transform .25s var(--ease-standard)}
 .strength:hover,.ecard:hover,.d-card:hover,.d-phase:hover,.ms-card:hover{box-shadow:0 8px 26px rgba(0,0,0,.08);transform:translateY(-2px)}
-image-slot{display:block;width:100%;height:100%}
 @media(max-width:760px){.d-grid2,.d-cards{grid-template-columns:1fr}.d-shots{grid-template-columns:1fr 1fr}.d-persona{grid-template-columns:1fr}.d-wrap{padding-left:18px;padding-right:18px}}
 
 /* =====================================================================
@@ -1059,7 +1058,6 @@ image-slot{display:block;width:100%;height:100%}
 
 <div class="lb" id="lb"><div class="panel" id="lbpanel"></div></div>
 
-<script src="assets/image-slot.js"></script>
 <script src="assets/icons/icons.js"></script>
 <script>
 function icon(name,size){const d=(window.ICONS||{})[name];if(!d)return "";return `<svg width="${size||18}" height="${size||18}" viewBox="${d.viewBox}" fill="none">${d.body}</svg>`;}
@@ -1674,7 +1672,7 @@ const caseSummary=c=>c.detail?c.detail.tagline:c.problem;
 function renderCaseHero(c,i){
   return `<div class="wrap pad" style="padding-top:8px">
     <div class="ch-hero reveal">
-      <div class="ch-shot"><img src="${c.cover}" alt="${c.title}" loading="eager" /></div>
+      <div class="ch-shot"><img src="${c.cover}" alt="${c.title}" loading="eager" fetchpriority="high" /></div>
       <div class="ch-scrim"></div>
       <div class="ch-top">
         <button class="ch-back" data-back>${icon('ArrowLeftCircle',18)} All case studies</button>
@@ -1700,7 +1698,7 @@ function renderCaseBody(c,i){
         <div class="csb"><span class="spec">Outcome</span><p>${c.outcome}</p></div>
       </div>
       <div class="cd-side">
-        <div class="cd-shot2"><image-slot id="caseside-${i}" placeholder="Drop a screen"></image-slot></div>
+        <div class="cd-shot2"></div>
         <div class="cd-bigm"><b>${c.metric}</b><span>${c.mlabel}</span></div>
       </div>
     </div>`;
