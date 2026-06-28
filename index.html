@@ -160,7 +160,7 @@ main{flex:1}
 .navtoggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .navtoggle[aria-expanded="true"] span:nth-child(2){opacity:0}
 .navtoggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-@media(max-width:680px){.brandnm{display:none}}
+/* brandnm shown on mobile via the 680px block below */
 
 /* ---- views + transitions ---- */
 .view{display:none}
@@ -322,7 +322,7 @@ main{flex:1}
 .foot .flinks{order:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .foot .flink{border:0;background:transparent;cursor:pointer;font-family:var(--font-ui);font-size:13px;color:var(--c-subtext);padding:6px 10px;border-radius:var(--radius-pill);transition:color var(--dur-base) var(--ease-standard),background var(--dur-base) var(--ease-standard)}
 .foot .flink:hover{color:var(--c-black);background:var(--c-on-background)}
-@media(max-width:900px){.foot{padding:26px 24px}.foot .fcopy{margin-left:0;order:2;width:100%}}
+@media(max-width:900px){.foot{padding:26px 24px}}
 .foot .fmotif{display:none}
 
 /* ---- HERO SLIDERS ---- */
@@ -741,28 +741,46 @@ image-slot{display:block;width:100%;height:100%}
    MOBILE — left-aligned, smaller type, single-column fits
    ===================================================================== */
 @media(max-width:680px){
-  .nav{padding:12px 18px}
-  .navtoggle{display:flex}
-  .brandnm{display:block;font-size:16px;font-weight:500}
-  /* full-screen overlay menu */
-  .navlinks{position:fixed;inset:0;flex-direction:column;justify-content:center;align-items:stretch;gap:2px;background:var(--c-background);padding:96px 26px 36px;transform:translateY(-10px);opacity:0;pointer-events:none;transition:opacity .3s var(--ease-standard),transform .3s var(--ease-standard);z-index:2;overflow-y:auto}
-  .nav.open .navlinks{transform:none;opacity:1;pointer-events:auto}
-  .nav.open .navlink{animation:menuItem .42s var(--ease-standard) both}
-  .nav.open .navlink:nth-child(2){animation-delay:.05s}
-  .nav.open .navlink:nth-child(3){animation-delay:.10s}
-  .nav.open .navlink:nth-child(4){animation-delay:.15s}
-  .nav.open .navcta{animation:menuItem .42s var(--ease-standard) .2s both}
-  @keyframes menuItem{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  /* ---- mobile nav bar ---- */
+  .nav{padding:14px 20px}
+  .brandnm{display:block;font-size:17px;font-weight:500}
+  .brandbtn,.navtoggle{position:relative;z-index:3}
+  .navtoggle{display:flex;width:44px;height:44px}
+  .navtoggle span{width:22px}
   .navunderline{display:none}
-  .navlink{font-size:30px;font-weight:400;line-height:1;padding:22px 6px;text-align:left;color:var(--c-black);border-bottom:1px solid var(--c-light-gray);border-radius:0;transition:color .2s var(--ease-standard)}
+
+  /* ---- full-screen overlay menu ---- */
+  .navlinks{
+    position:fixed;inset:0;
+    flex-direction:column;justify-content:center;align-items:stretch;
+    gap:0;
+    background:#fff;
+    padding:88px 32px 52px;
+    transform:translateY(-10px);opacity:0;pointer-events:none;
+    transition:opacity .28s ease,transform .28s ease;
+    z-index:2;overflow-y:auto;
+  }
+  .nav.open .navlinks{transform:none;opacity:1;pointer-events:auto}
+  @keyframes menuItem{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .nav.open .navlink:nth-child(1){animation:menuItem .38s ease both}
+  .nav.open .navlink:nth-child(2){animation:menuItem .38s ease .07s both}
+  .nav.open .navlink:nth-child(3){animation:menuItem .38s ease .14s both}
+  .nav.open .navlink:nth-child(4){animation:menuItem .38s ease .21s both}
+  .nav.open .navcta{animation:menuItem .38s ease .28s both}
+  .navlink{
+    font-size:34px;font-weight:400;line-height:1;
+    padding:22px 0;text-align:left;
+    color:var(--c-black);
+    border-bottom:1px solid var(--c-light-gray);
+    border-radius:0;
+    transition:color .18s ease;
+  }
+  .navlink:last-of-type{border-bottom:1px solid var(--c-light-gray)}
   .navlink:active{background:transparent}
   .navlink.active{color:var(--c-accent)}
-  .navcta{margin:28px 0 0;align-self:flex-start;width:auto;margin-left:6px}
-  .navcta.psg-btn--md{height:48px;padding:0 26px;border-radius:16px}
+  .navcta{margin-top:36px;align-self:stretch;width:100%;justify-content:center;margin-left:0}
+  .navcta.psg-btn--md{height:52px;padding:0 28px;border-radius:14px;font-size:16px}
   .navcta .psg-btn__label{font-size:16px !important;font-weight:500 !important}
-  .brandbtn,.navtoggle{position:relative;z-index:3}
-  .navtoggle{width:46px;height:46px}
-  .navtoggle span{width:24px}
 
   /* project popup (lightbox) */
   .lb{padding:14px}
@@ -828,10 +846,11 @@ image-slot{display:block;width:100%;height:100%}
   .contact2 .clead{font-size:15px;line-height:24px}
   .psg-card--pad-lg{--_pad:22px}
 
-  /* FOOTER */
-  .foot{padding:24px 20px}
-  .foot .flinks{gap:4px}
+  /* FOOTER — centered on mobile */
+  .foot{padding:28px 20px;flex-direction:column;align-items:center;gap:16px;text-align:center}
+  .foot .flinks{justify-content:center;gap:4px;flex-wrap:wrap}
   .foot .flink{padding:6px 8px;font-size:12.5px}
+  .foot .fcopy{margin-left:0;order:2;width:100%;text-align:center}
 
   /* CASE DETAIL hero */
   .cd-body{padding-top:22px;padding-bottom:22px}
