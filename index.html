@@ -1117,6 +1117,7 @@ const CASES=[
      competitors:["SimplePractice","JaneApp","BetterPractice","Additional mental healthcare platforms"],
      researchFocus:["Therapist workflows","Appointment management","Documentation","Client communication","Mobile experience","AI opportunities","User pain points"],
      competitorsNote:"The findings shaped the foundation of the product strategy and feature roadmap.",
+     competitorShot:"assets/images/meProWeb.webp",
      phases:[
        {ph:"Phase 1",title:"Product Strategy",body:"Defined product goals, user personas, feature priorities, and competitive positioning."},
        {ph:"Phase 2",title:"Design System",body:"Before designing individual products, I created a scalable design system to ensure consistency across the therapist dashboard and client mobile application.",list:["Color palette","Typography","Spacing","Grid system","Components","Forms","Navigation","Icons","Accessibility guidelines"],note:"This significantly accelerated future design iterations and developer implementation."},
@@ -1644,7 +1645,8 @@ function renderDetail(c){const d=c.detail;
   <div class="d-sec"><span class="d-sub">Competitive research</span><p class="d-p">${d.competitorsIntro}</p>
     <div class="d-grid2"><div><h4 class="d-min">Competitors studied</h4>${dlist(d.competitors)}</div>
       <div><h4 class="d-min">Research focus</h4>${dlist(d.researchFocus)}</div></div>
-    <p class="d-note">${d.competitorsNote}</p></div>
+    <p class="d-note">${d.competitorsNote}</p>
+    ${d.competitorShot?`<figure class="d-phaseshot" style="margin-top:16px"><img src="${d.competitorShot}" alt="Competitive research" loading="lazy" /></figure>`:''}</div>
   <div class="d-sec"><span class="d-sub">Design process</span>
     <div class="d-phases">${d.phases.map(p=>`<div class="d-phase"><span class="d-phn">${p.ph}</span><h4>${p.title}</h4><p class="d-p">${p.body}</p>${p.list?dlist(p.list):''}${p.note?`<p class="d-note">${p.note}</p>`:''}</div>${p.shot?`<figure class="d-phaseshot"><img src="${p.shot}" alt="${p.shotAlt||''}" loading="lazy" />${p.shotCap?`<figcaption>${p.shotCap}</figcaption>`:''}</figure>`:''}`).join('')}</div></div>
   ${renderProcessStrip(d.process||MEPRO_PROCESS)}
