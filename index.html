@@ -151,6 +151,7 @@ main{flex:1}
 .brandbtn{display:flex;align-items:center;gap:12px;border:0;background:transparent;cursor:pointer;padding:0}
 .mono{width:30px;height:30px;border-radius:50%;box-shadow:inset 0 0 0 1.2px var(--c-black);display:grid;place-items:center;font-weight:500;font-size:11px;letter-spacing:.02em;color:var(--c-black)}
 .brandnm{font-weight:500;font-size:18px;color:var(--c-black)}
+.brandlogo{height:18px;width:auto;display:block;flex-shrink:0}
 .navlinks{position:relative;display:flex;align-items:center;gap:8px}
 .navlink{position:relative;border:0;background:transparent;cursor:pointer;font-family:var(--font-ui);font-weight:500;font-size:16px;color:var(--c-subtext);padding:8px 6px;transition:color var(--dur-base) var(--ease-standard)}
 .navlink:hover{color:var(--c-black)}
@@ -747,7 +748,8 @@ image-slot{display:block;width:100%;height:100%}
 @media(max-width:680px){
   /* ---- mobile nav bar ---- */
   .nav{padding:14px 20px}
-  .brandnm{display:block;font-size:20px;font-weight:500}
+  .brandnm{display:none}
+  .brandlogo{height:24px;width:24px;object-fit:contain}
   .brandbtn,.navtoggle{position:relative;z-index:31}
   .navtoggle{display:flex;width:44px;height:44px}
   .navtoggle span{width:22px}
@@ -913,6 +915,7 @@ image-slot{display:block;width:100%;height:100%}
 <div id="app">
   <header class="nav" style="background-color: rgba(255, 255, 255, 0.66)">
     <button class="brandbtn" data-go="work" aria-label="Home">
+      <img class="brandlogo" src="assets/Logo.png" alt="" aria-hidden="true" />
       <span class="brandnm" style="font-weight: 400">Kasra Nourani</span>
     </button>
     <nav class="navlinks" id="navlinks">
