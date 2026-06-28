@@ -11,11 +11,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Fustat:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
-/* Override all design-system font tokens to Google Sans Flex */
+/* Font tokens — Figtree is the public fallback for Google Sans Flex */
 :root{
-  --font-display:"Google Sans Flex","Google Sans Code",system-ui,-apple-system,sans-serif;
-  --font-ui:"Google Sans Flex","Google Sans Code",system-ui,-apple-system,sans-serif;
-  --font-label:"Google Sans Flex","Google Sans Code",system-ui,-apple-system,sans-serif;
+  --font-display:"Google Sans Flex","Figtree",system-ui,-apple-system,sans-serif;
+  --font-ui:"Google Sans Flex","Figtree",system-ui,-apple-system,sans-serif;
+  --font-label:"Google Sans Flex","Figtree",system-ui,-apple-system,sans-serif;
   --fw-light:300; --fw-regular:400; --fw-medium:500; --fw-semibold:500; --fw-bold:500;
   --c-border:#EEEEEE; --c-light-gray:#EEEEEE; --c-stroke-1:#EEEEEE; --c-stroke-2:#EEEEEE;
   --radius-xs:16px; --radius-sm:16px; --radius-md:16px; --radius-lg:16px; --radius-xl:16px;
@@ -415,7 +415,7 @@ main{flex:1}
 .d-gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .d-gcell{margin:0;border-radius:16px;overflow:hidden;background:var(--c-white);box-shadow:inset 0 0 0 1px var(--c-border);aspect-ratio:1/1}
 .d-gcell img{display:block;width:100%;height:100%;object-fit:cover}
-.d-gslot image-slot{width:100%;height:100%}
+
 @media(max-width:680px){.d-gallery{grid-template-columns:1fr}}
 .d-note{font-size:14px;line-height:22px;color:var(--c-subtext);margin-top:12px}
 .d-flowgroup{display:flex;flex-direction:column;gap:12px}
@@ -694,7 +694,7 @@ main{flex:1}
 /* ---- case detail page ---- */
 .ch-hero{position:relative;border-radius:16px;overflow:hidden;height:clamp(380px,54vh,560px)}
 .ch-shot{position:absolute;inset:0}
-.ch-shot image-slot,.cd-shot2 image-slot{width:100%;height:100%;display:block}
+.ch-shot img,.cd-shot2 img{width:100%;height:100%;display:block;object-fit:cover}
 .ch-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,0) 30%,rgba(0,0,0,.60));pointer-events:none;z-index:1}
 .ch-top{position:absolute;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center;z-index:3}
 .ch-back{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-ui);font-weight:500;font-size:14px;color:#fff;padding:11px 17px;border-radius:999px;cursor:pointer;background:rgba(16,18,24,.34);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);border:1px solid rgba(255,255,255,.18);transition:background .25s var(--ease-standard)}
@@ -1653,7 +1653,7 @@ function renderDetail(c){const d=c.detail;
   <div class="d-sec"><span class="d-sub">Challenges</span>
     <div class="d-cards">${d.challenges.map(ch=>`<div class="d-card"><h5>${ch[0]}</h5><p>${ch[1]}</p></div>`).join('')}</div></div>
   <div class="d-sec"><span class="d-sub">What I learned</span>${dlist(d.learned)}</div>
-  ${d.gallery?`<div class="d-sec"><div class="d-gallery">${d.gallery.map((g,i)=>g.img?`<figure class="d-gcell"><img src="${g.img}" alt="${g.alt||''}" loading="lazy" /></figure>`:`<div class="d-gcell d-gslot"><image-slot id="${c.title.toLowerCase()}-gal-${i}" placeholder="${g.placeholder||'Drop a shot'}"></image-slot></div>`).join('')}</div></div>`:''}
+  ${d.gallery&&d.gallery.some(g=>g.img)?`<div class="d-sec"><div class="d-gallery">${d.gallery.filter(g=>g.img).map(g=>`<figure class="d-gcell"><img src="${g.img}" alt="${g.alt||''}" loading="lazy" /></figure>`).join('')}</div></div>`:''}
 </div>`;}
 
 /* ---------- case studies: index + dedicated pages ---------- */
@@ -1661,7 +1661,7 @@ const caseSummary=c=>c.detail?c.detail.tagline:c.problem;
 function renderCaseHero(c,i){
   return `<div class="wrap pad" style="padding-top:8px">
     <div class="ch-hero reveal">
-      <div class="ch-shot"><image-slot id="casehero-${i}" src="${c.cover}" fit="cover" placeholder="Drop a hero shot — ${c.title}"></image-slot></div>
+      <div class="ch-shot"><img src="${c.cover}" alt="${c.title}" loading="eager" /></div>
       <div class="ch-scrim"></div>
       <div class="ch-top">
         <button class="ch-back" data-back>${icon('ArrowLeftCircle',18)} All case studies</button>
