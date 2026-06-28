@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Fustat:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit" async defer></script>
 <style>
 /* Font tokens — Figtree is the public fallback for Google Sans Flex */
 :root{
@@ -1774,8 +1774,15 @@ document.getElementById('articles').innerHTML=ARTICLES.map(a=>`
 /* ---------- contact form ---------- */
 const formhost=document.getElementById('formhost');
 const TS_SITEKEY='0x4AAAAAADsTdSnkAPTVxWBe';
+let _tsId=null;
+
+window.onloadTurnstileCallback=function(){
+  const el=document.getElementById('ts-widget');
+  if(el&&_tsId===null) _tsId=turnstile.render(el,{sitekey:TS_SITEKEY,theme:'light'});
+};
 
 function renderForm(){
+  _tsId=null;
   formhost.innerHTML=`
   <form class="cform" id="cform" novalidate>
     <div class="psg-field" id="f-name">
@@ -1802,13 +1809,10 @@ function renderForm(){
     </div>
   </form>`;
   document.getElementById('cform').addEventListener('submit',onSubmit);
-  function mountTS(){
+  if(window.turnstile){
     const el=document.getElementById('ts-widget');
-    if(!el)return;
-    turnstile.render(el,{sitekey:TS_SITEKEY,theme:'light'});
+    if(el) _tsId=turnstile.render(el,{sitekey:TS_SITEKEY,theme:'light'});
   }
-  if(window.turnstile){mountTS();}
-  else{const iv=setInterval(()=>{if(window.turnstile){clearInterval(iv);mountTS();}},150);}
 }
 
 function setErr(field,help,on,msg){
@@ -1839,7 +1843,8 @@ async function onSubmit(e){
 
   if(document.getElementById('i-honey')&&document.getElementById('i-honey').value)return;
 
-  const tsToken=window.turnstile&&turnstile.getResponse(document.getElementById('ts-widget'));
+  if(!window.turnstile||_tsId===null){showBannerErr('Security check not loaded — please refresh the page.');return;}
+  const tsToken=turnstile.getResponse(_tsId);
   if(!tsToken){showBannerErr('Please complete the security check above.');return;}
 
   const btn=document.getElementById('submit-btn');
@@ -1864,12 +1869,12 @@ async function onSubmit(e){
       document.getElementById('again').addEventListener('click',renderForm);
     }else{
       btn.disabled=false;btn.innerHTML=origHTML;
-      if(window.turnstile)turnstile.reset(document.getElementById('ts-widget'));
+      if(window.turnstile&&_tsId!==null)turnstile.reset(_tsId);
       showBannerErr('Something went wrong. Please try again.');
     }
   }catch(_){
     btn.disabled=false;btn.innerHTML=origHTML;
-    if(window.turnstile)turnstile.reset(document.getElementById('ts-widget'));
+    if(window.turnstile&&_tsId!==null)turnstile.reset(_tsId);
     showBannerErr('Network error — please check your connection and try again.');
   }
 }
