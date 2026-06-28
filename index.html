@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Fustat:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async></script>
 <style>
 /* Font tokens — Figtree is the public fallback for Google Sans Flex */
 :root{
@@ -316,6 +317,8 @@ main{flex:1}
 .csuccess .ok svg{width:26px;height:26px}
 .csuccess h3{font-weight:500;font-size:var(--fs-h4);color:var(--c-black)}
 .csuccess p{color:var(--c-subtext);font-size:16px}
+.cerr{font-size:14px;color:#c0392b;background:#fdf2f2;border:1px solid #f5c6c6;border-radius:10px;padding:10px 14px;display:none}
+.cerr.show{display:block}
 
 /* ---- FOOTER ---- */
 .foot{display:flex;align-items:center;justify-content:space-between;padding:30px 80px;border-top:1px solid var(--c-light-gray);font-family:var(--font-label);font-size:13px;color:var(--c-subtext);gap:20px;flex-wrap:wrap}
@@ -1762,6 +1765,8 @@ document.getElementById('articles').innerHTML=ARTICLES.map(a=>`
 
 /* ---------- contact form ---------- */
 const formhost=document.getElementById('formhost');
+const TS_SITEKEY='0x4AAAAAADsTdSnkAPTVxWBe';
+
 function renderForm(){
   formhost.innerHTML=`
   <form class="cform" id="cform" novalidate>
@@ -1779,36 +1784,79 @@ function renderForm(){
       <label class="psg-field__label">Message</label>
       <div class="psg-field__box" style="height:auto;padding:12px 16px"><textarea class="psg-field__area" id="i-msg" rows="4" placeholder="A few lines about your project…" style="resize:vertical"></textarea></div>
     </div>
+    <div id="ts-widget" style="margin-top:4px"></div>
+    <div class="cerr" id="f-err"></div>
     <div style="display:flex;gap:10px;margin-top:2px">
-      <button type="submit" class="psg-btn psg-btn--accent psg-btn--lg">Send message<span class="psg-btn__ico">${icon('Send',22)}</span></button>
+      <button type="submit" class="psg-btn psg-btn--accent psg-btn--lg" id="submit-btn">Send message<span class="psg-btn__ico">${icon('Send',22)}</span></button>
       <button type="button" class="psg-btn psg-btn--ghost psg-btn--lg" data-tab="work">Cancel</button>
     </div>
   </form>`;
   document.getElementById('cform').addEventListener('submit',onSubmit);
+  function mountTS(){
+    const el=document.getElementById('ts-widget');
+    if(!el)return;
+    turnstile.render(el,{sitekey:TS_SITEKEY,theme:'light'});
+  }
+  if(window.turnstile){mountTS();}
+  else{const iv=setInterval(()=>{if(window.turnstile){clearInterval(iv);mountTS();}},150);}
 }
+
 function setErr(field,help,on,msg){
   document.getElementById(field).classList.toggle('psg-field--error',on);
   const h=document.getElementById(help);h.style.display=on?'flex':'none';
   if(msg)h.querySelector('span').textContent=msg;
 }
-function onSubmit(e){
+
+function showBannerErr(msg){
+  const el=document.getElementById('f-err');
+  if(!el)return;
+  el.textContent=msg;
+  el.classList.add('show');
+}
+
+async function onSubmit(e){
   e.preventDefault();
   const name=document.getElementById('i-name').value.trim();
   const email=document.getElementById('i-email').value.trim();
-  const emailBad=email.length>0 && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+  const emailBad=email.length>0&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
   setErr('f-name','h-name',!name,'Please add your name');
-  setErr('f-email','h-email',emailBad||!email, emailBad?'That email looks off':'Email is required');
+  setErr('f-email','h-email',emailBad||!email,emailBad?'That email looks off':'Email is required');
+  const errEl=document.getElementById('f-err');if(errEl)errEl.classList.remove('show');
   if(!name||!email||emailBad)return;
+
+  const tsToken=window.turnstile&&turnstile.getResponse(document.getElementById('ts-widget'));
+  if(!tsToken){showBannerErr('Please complete the security check above.');return;}
+
   const msg=(document.getElementById('i-msg').value||'').trim();
-  const subject=encodeURIComponent('Portfolio enquiry from '+name);
-  const body=encodeURIComponent(msg+'\n\n— '+name+'\n'+email);
-  window.location.href='mailto:kasra.nourani@gmail.com?subject='+subject+'&body='+body;
-  formhost.innerHTML=`<div class="csuccess">
-    <span class="ok">${icon('CheckCircle',26)}</span>
-    <h3>Opening your email…</h3>
-    <p>Thanks, ${name.split(' ')[0]||'there'} — your message is ready to send in your mail app. I'll reply within a day or two.</p>
-    <button class="psg-btn psg-btn--outline psg-btn--md" id="again">Send another</button></div>`;
-  document.getElementById('again').addEventListener('click',renderForm);
+  const btn=document.getElementById('submit-btn');
+  const origHTML=btn.innerHTML;
+  btn.disabled=true;btn.textContent='Sending…';
+
+  try{
+    const fd=new FormData();
+    fd.append('name',name);
+    fd.append('email',email);
+    fd.append('message',msg||'(no message)');
+    fd.append('cf-turnstile-response',tsToken);
+
+    const res=await fetch('https://getform.io/f/2mvkgol8lfx',{method:'POST',body:fd,headers:{Accept:'application/json'}});
+    if(res.ok){
+      formhost.innerHTML=`<div class="csuccess">
+        <span class="ok">${icon('CheckCircle',26)}</span>
+        <h3>Message sent!</h3>
+        <p>Thanks, ${name.split(' ')[0]||'there'} — I'll get back to you within a day or two.</p>
+        <button class="psg-btn psg-btn--outline psg-btn--md" id="again">Send another</button></div>`;
+      document.getElementById('again').addEventListener('click',renderForm);
+    }else{
+      btn.disabled=false;btn.innerHTML=origHTML;
+      if(window.turnstile)turnstile.reset(document.getElementById('ts-widget'));
+      showBannerErr('Something went wrong. Please try again.');
+    }
+  }catch(_){
+    btn.disabled=false;btn.innerHTML=origHTML;
+    if(window.turnstile)turnstile.reset(document.getElementById('ts-widget'));
+    showBannerErr('Network error — please check your connection and try again.');
+  }
 }
 renderForm();
 
