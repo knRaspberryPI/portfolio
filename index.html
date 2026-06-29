@@ -1944,7 +1944,6 @@ function setTab(tab){
   current=tab;currentCase=null;
   setActiveNav(tab);
   revealView(toEl);
-  try{localStorage.setItem('kn_tab2',tab);}catch(e){}
   history.replaceState(null,'','#'+tab);
 }
 document.querySelectorAll('[data-tab]').forEach(el=>el.addEventListener('click',()=>setTab(el.dataset.tab)));
@@ -1971,7 +1970,6 @@ let initTab=(location.hash||'').replace('#','');
 let initCase=null;
 const _cm=initTab.match(/^case-(\d+)$/);
 if(_cm){initCase=+_cm[1];initTab='case';}
-if(!TABS.includes(initTab)){try{initTab=localStorage.getItem('kn_tab2')||'';}catch(e){}}
 if(!TABS.includes(initTab))initTab='work';
 (function(){
   if(initCase!=null && CASES[initCase]){current='case';openCase(initCase,false);return;}
